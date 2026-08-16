@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #070406;
+    color: #f1f5f9;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Crimson & Ruby Luxury Glassmorphic Styling Harmonized with Background */
+.tech-card {
+  background: rgba(18, 11, 15, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(244, 63, 94, 0.18);
+  transition: all 0.25s ease-in-out;
+}
+
+.tech-card:hover {
+  background: rgba(26, 14, 20, 0.88);
+  border-color: rgba(244, 63, 94, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -5px rgba(225, 29, 72, 0.18);
+}
+
+.crimson-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #fecdd3 40%, #fb7185 80%, #e11d48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mono-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Continuous Marquee Ticker Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth Crimson & Obsidian Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070406;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f1522;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e11d48;
+}
