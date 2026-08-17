@@ -42,15 +42,42 @@ export const ContactSection: React.FC = () => {
     };
 
     try {
-      // Send to secure n8n backend webhook
-      const response = await fetch('https://flow.izerick.dev/webhook/contacto', {
+      // 1. Direct Telegram Notification (instant & fail-safe)
+      const tgToken = atob('ODQyMDk5MzY4MTpBQUZ6NXBpcFZmbVVsaERHV0w4ZFpZcmdPenBETkkxNm5n');
+      const chatId = '5265465071';
+
+      const telegramText = `🔔 *¡Nuevo Lead en izerick.dev!*\n\n` +
+        `👤 *Nombre:* ${payload.name}\n` +
+        `📬 *Contacto:* ${payload.contact}\n` +
+        `💼 *Servicio:* ${payload.service}\n` +
+        `📝 *Mensaje:*\n${payload.message}\n\n` +
+        `📅 _Fecha: ${new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' })}_`;
+
+      const tgPromise = fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: telegramText,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      // 2. n8n Webhook (asynchronous backup)
+      const n8nPromise = fetch('https://flow.izerick.dev/webhook/contacto', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      });
+      }).catch(() => null);
 
-      if (!response.ok) {
-        throw new Error('Server error');
+      const [tgRes] = await Promise.all([
+        tgPromise,
+        n8nPromise,
+        new Promise((resolve) => setTimeout(resolve, 600))
+      ]);
+
+      if (!tgRes.ok) {
+        throw new Error('Telegram send error');
       }
 
       setStatus('success');
