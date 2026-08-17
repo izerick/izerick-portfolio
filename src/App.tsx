@@ -7,6 +7,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { TechStackSection } from './components/TechStackSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { InteractiveTerminalHUD } from './components/InteractiveTerminalHUD';
 
 export function App() {
   return (
@@ -32,6 +33,9 @@ export function App() {
       <div className="relative z-10">
         <Footer />
       </div>
+
+      {/* Interactive Developer Terminal HUD */}
+      <InteractiveTerminalHUD />
 
     </div>
   );
