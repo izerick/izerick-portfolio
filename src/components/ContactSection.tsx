@@ -49,7 +49,8 @@ export const ContactSection: React.FC = () => {
         `📝 *Mensaje:*\n${payload.message}\n\n` +
         `📅 _Fecha: ${new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' })}_`;
 
-      const response = await fetch('/api/telegram-lead', {
+      // 1. Direct High-Speed Telegram via Nginx
+      const tgPromise = fetch('/api/telegram-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -59,8 +60,21 @@ export const ContactSection: React.FC = () => {
         })
       });
 
-      if (!response.ok) {
-        throw new Error('Error al enviar');
+      // 2. n8n Automation Engine (Notion CRM logging)
+      const n8nPromise = fetch('https://flow.izerick.dev/webhook/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => null);
+
+      const [tgRes] = await Promise.all([
+        tgPromise,
+        n8nPromise,
+        new Promise((resolve) => setTimeout(resolve, 500))
+      ]);
+
+      if (!tgRes.ok) {
+        throw new Error('Error al enviar mensaje');
       }
 
       setStatus('success');
