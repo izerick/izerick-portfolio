@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Mail, GraduationCap, Code2, ShieldCheck, FileText } from 'lucide-react';
+import { ArrowRight, Mail, GraduationCap, Code2, ShieldCheck } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export const HeroSection: React.FC = () => {
@@ -45,23 +45,13 @@ export const HeroSection: React.FC = () => {
                 href="#proyectos"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(244,63,94,0.4)]"
               >
-                <span>Ver Proyectos</span>
+                <span>Ver Proyectos en Marcha</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
-                href="/cv.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#140b0f]/90 hover:bg-[#1c0f16] border border-rose-900/40 text-slate-200 hover:text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-md transition-colors"
-              >
-                <FileText className="w-4 h-4 text-rose-400" />
-                <span>Ver / Descargar CV</span>
-              </a>
-
-              <a
                 href="#contacto"
-                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#140b0f]/60 hover:bg-[#1c0f16] border border-rose-950 text-slate-300 hover:text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-md transition-colors"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#140b0f]/90 hover:bg-[#1c0f16] border border-rose-900/40 text-slate-200 hover:text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-md transition-colors"
               >
                 <Mail className="w-4 h-4 text-rose-400" />
                 <span>Contactar</span>
