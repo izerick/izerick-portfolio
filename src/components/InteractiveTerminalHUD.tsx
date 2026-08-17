@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, X, Maximize2, Minimize2, Sparkles, Send, CornerDownLeft } from 'lucide-react';
+import { Terminal, X, Maximize2, Minimize2, CornerDownLeft } from 'lucide-react';
 
 interface HistoryItem {
   id: string;
