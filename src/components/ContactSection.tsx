@@ -42,36 +42,16 @@ export const ContactSection: React.FC = () => {
     };
 
     try {
-      // 1. Send to Telegram directly for instantaneous notification
-      const telegramText = `🔔 *¡Nuevo Lead en izerick.dev!*\n\n` +
-        `👤 *Nombre:* ${payload.name}\n` +
-        `📬 *Contacto:* ${payload.contact}\n` +
-        `💼 *Servicio:* ${payload.service}\n` +
-        `📝 *Mensaje:*\n${payload.message}\n\n` +
-        `📅 _Fecha: ${new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' })}_`;
-
-      const tgPromise = fetch('https://api.telegram.org/bot8420993681:AAFCg2hC9yEGPhr66IH_wDT7I185p_SPX0c/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: '5265465071',
-          text: telegramText,
-          parse_mode: 'Markdown'
-        })
-      });
-
-      // 2. Send to n8n Webhook asynchronously
-      const n8nPromise = fetch('https://flow.izerick.dev/webhook/contacto', {
+      // Send to secure n8n backend webhook
+      const response = await fetch('https://flow.izerick.dev/webhook/contacto', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).catch(() => null);
+      });
 
-      await Promise.allSettled([
-        tgPromise,
-        n8nPromise,
-        new Promise((resolve) => setTimeout(resolve, 800))
-      ]);
+      if (!response.ok) {
+        throw new Error('Server error');
+      }
 
       setStatus('success');
       setFormData({
