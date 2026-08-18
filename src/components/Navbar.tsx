@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Mail, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Github, Calculator, Menu, X, ArrowUpRight } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,18 +16,26 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { to: '/', label: 'Inicio' },
+    { to: '/perfil', label: 'Perfil' },
+    { to: '/proyectos', label: 'Proyectos' },
+    { to: '/servicios', label: 'Servicios' },
+    { to: '/contacto', label: 'Contacto' },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-[#070406]/90 backdrop-blur-md border-b border-rose-950/60 py-3.5 shadow-2xl'
+          ? 'bg-[#070406]/95 backdrop-blur-md border-b border-rose-950/60 py-3.5 shadow-2xl'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         
         {/* Brand Monogram */}
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <div className="w-9 h-9 rounded-lg bg-rose-950/70 border border-rose-500/40 flex items-center justify-center text-rose-300 font-mono font-bold text-xs group-hover:border-rose-400 group-hover:scale-105 transition-all shadow-[0_0_15px_rgba(244,63,94,0.2)]">
             EB
           </div>
@@ -42,28 +52,29 @@ export const Navbar: React.FC = () => {
               Ing. Seguridad Industrial • Dev Autónomo
             </span>
           </div>
-        </a>
+        </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Links (Each is a Separate Page) */}
         <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-slate-300">
-          <a href="#perfil" className="hover:text-rose-400 transition-colors">
-            Perfil
-          </a>
-          <a href="#proyectos" className="hover:text-rose-400 transition-colors">
-            Proyectos en Marcha
-          </a>
-          <a href="#servicios" className="hover:text-rose-400 transition-colors">
-            Servicios
-          </a>
-          <a href="#tecnologias" className="hover:text-rose-400 transition-colors">
-            Stack
-          </a>
-          <a href="#contacto" className="hover:text-rose-400 transition-colors">
-            Contacto
-          </a>
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.to;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`transition-colors ${
+                  isActive
+                    ? 'text-white font-bold border-b border-rose-500 pb-0.5'
+                    : 'text-slate-300 hover:text-rose-400'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Right CTA */}
+        {/* Right Action: HIGHLIGHTED COTIZAR AHORA BUTTON */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href={PORTFOLIO_DATA.personalInfo.github}
@@ -75,14 +86,15 @@ export const Navbar: React.FC = () => {
             <Github className="w-4 h-4" />
           </a>
 
-          <a
-            href="#contacto"
-            className="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-[0_0_20px_rgba(225,29,72,0.35)]"
+          {/* Highlighted Cotizar Ahora CTA */}
+          <Link
+            to="/cotizar"
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-[0_0_25px_rgba(244,63,94,0.4)] ring-1 ring-rose-400/50 group"
           >
-            <Mail className="w-3.5 h-3.5" />
-            <span>Contactar</span>
-            <ArrowUpRight className="w-3 h-3" />
-          </a>
+            <Calculator className="w-3.5 h-3.5 text-rose-200 group-hover:rotate-12 transition-transform" />
+            <span>Cotizar Ahora</span>
+            <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -97,51 +109,28 @@ export const Navbar: React.FC = () => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#0a0508]/95 backdrop-blur-xl border-b border-rose-900/40 px-6 py-5 space-y-3 font-mono text-xs">
-          <a
-            href="#perfil"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-rose-300 py-1.5"
-          >
-            // 01. Perfil & Trayectoria
-          </a>
-          <a
-            href="#proyectos"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-rose-300 py-1.5"
-          >
-            // 02. Proyectos en Marcha
-          </a>
-          <a
-            href="#servicios"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-rose-300 py-1.5"
-          >
-            // 03. Servicios
-          </a>
-          <a
-            href="#tecnologias"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-rose-300 py-1.5"
-          >
-            // 04. Tecnologías
-          </a>
-          <a
-            href="#contacto"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-300 hover:text-rose-300 py-1.5"
-          >
-            // 05. Contacto
-          </a>
-
-          <div className="pt-2">
-            <a
-              href="#contacto"
+          {navLinks.map((link, idx) => (
+            <Link
+              key={link.to}
+              to={link.to}
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2.5 rounded-lg bg-gradient-to-r from-rose-600 to-red-600 text-white font-bold text-center flex items-center justify-center gap-2"
+              className={`block py-1.5 ${
+                location.pathname === link.to ? 'text-rose-400 font-bold' : 'text-slate-300 hover:text-rose-300'
+              }`}
             >
-              <Mail className="w-4 h-4" />
-              <span>Enviar Mensaje</span>
-            </a>
+              // 0{idx + 1}. {link.label}
+            </Link>
+          ))}
+
+          <div className="pt-3">
+            <Link
+              to="/cotizar"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg"
+            >
+              <Calculator className="w-4 h-4" />
+              <span>Cotizar Proyecto Ahora</span>
+            </Link>
           </div>
         </div>
       )}
