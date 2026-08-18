@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { BackgroundScrollCanvas } from './components/BackgroundScrollCanvas';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { PromoToast } from './components/PromoToast';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectsPage } from './pages/ProjectsPage';
@@ -41,6 +42,9 @@ export function App() {
         <div className="relative z-10">
           <Footer />
         </div>
+
+        {/* Global Floating Promo Toast (Highest Stacking Layer z-[9999]) */}
+        <PromoToast />
 
       </div>
     </Router>
