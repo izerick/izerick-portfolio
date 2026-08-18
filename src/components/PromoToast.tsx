@@ -50,7 +50,7 @@ export const PromoToast: React.FC = () => {
               <Flame className="w-3 h-3 text-white fill-white animate-pulse" />
               <span>Oferta Especial</span>
             </span>
-            <span className="text-[10px] font-mono text-rose-300 font-bold">Plan $35/mes</span>
+            <span className="text-[10px] font-mono text-rose-300 font-semibold">Plan 12 Meses</span>
           </div>
 
           {/* Content */}
