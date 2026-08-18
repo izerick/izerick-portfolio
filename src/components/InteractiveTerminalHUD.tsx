@@ -95,7 +95,6 @@ export const InteractiveTerminalHUD: React.FC = () => {
 
   const executeCommand = (rawCmd: string) => {
     const cmd = rawCmd.trim().toLowerCase();
-    const args = cmd.split(' ').slice(1);
     const primaryCmd = cmd.split(' ')[0];
 
     playBeep(600, 0.05);
