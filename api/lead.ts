@@ -12,6 +12,14 @@ const TG_CHAT = process.env.TELEGRAM_CHAT_ID || d('NTI2NTQ2NTA3MQ==');
 const NT_TOKEN = process.env.NOTION_TOKEN || d('bnRuXzUyODIyNjQ4MjU4NjNFZ2pDRTdJenc5NG8wR1Z0elFhbE1HZlJUdlcxeEs1M3k=');
 const NT_DB = process.env.NOTION_DATABASE_ID || d('M2JmYzRjNzktYTVjMi04MTRhLTlmYTktYzQ5YzExOThhZGI4');
 
+// Escape HTML characters for Telegram
+function escapeHtml(text: string) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 export default async function handler(req: any, res: any) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,27 +40,31 @@ export default async function handler(req: any, res: any) {
     const contact = data.contact || 'Sin contacto';
     const service = data.service || 'Consulta General';
     const message = (data.message || 'Sin mensaje').replace(/%0A/g, '\n');
-    const nowStr = new Date().toISOString().replace('T', ' ').substring(0, 19);
+    const nowStr = new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' });
     const dateIso = new Date().toISOString().split('T')[0];
 
-    // 1. Dispatch to Telegram
-    const tgText = `🔔 *¡Nuevo Lead en izerick.dev!*\n\n` +
-      `👤 *Nombre:* ${name}\n` +
-      `📬 *Contacto:* ${contact}\n` +
-      `💼 *Servicio:* ${service}\n` +
-      `📝 *Detalles:*\n${message}\n\n` +
-      `📅 _Fecha: ${nowStr}_`;
+    // 1. Dispatch to Telegram using HTML format (immune to Markdown parse errors)
+    const tgText = `<b>🔔 ¡Nuevo Lead en izerick.dev!</b>\n\n` +
+      `<b>👤 Nombre:</b> ${escapeHtml(name)}\n` +
+      `<b>📬 Contacto:</b> ${escapeHtml(contact)}\n` +
+      `<b>💼 Servicio:</b> ${escapeHtml(service)}\n` +
+      `<b>📝 Detalles:</b>\n${escapeHtml(message)}\n\n` +
+      `<i>📅 Fecha: ${nowStr}</i>`;
 
     try {
-      await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      const tgRes = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: TG_CHAT,
           text: tgText,
-          parse_mode: 'Markdown',
+          parse_mode: 'HTML',
         }),
       });
+      const tgJson = await tgRes.json();
+      if (!tgJson.ok) {
+        console.error('Telegram API rejected message:', tgJson);
+      }
     } catch (tgErr) {
       console.error('Telegram Error:', tgErr);
     }
