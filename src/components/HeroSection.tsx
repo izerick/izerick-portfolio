@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Mail, GraduationCap, Code2, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, GraduationCap, Code2, ShieldCheck, Calculator, Layers, Sparkles } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export const HeroSection: React.FC = () => {
@@ -26,36 +27,43 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Editorial Headline */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Main Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
+          {/* Left Column: Heading, Bio & CTAs */}
           <div className="lg:col-span-8 space-y-6 text-left">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight leading-[1.12] drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.08]">
               Rigor de ingeniería aplicado al{' '}
               <span className="crimson-gradient-text">desarrollo de software.</span>
             </h1>
 
-            <p className="text-sm sm:text-lg text-slate-200 leading-relaxed font-sans max-w-2xl drop-shadow-md">
-              Soy <strong className="text-white font-semibold">{PORTFOLIO_DATA.personalInfo.name}</strong> (<span className="text-rose-400 font-mono">@izerick</span>). Ingeniero en Seguridad Industrial graduado en la <strong>Universidad Técnica Estatal de Quevedo (UTEQ)</strong> y desarrollador de software autónomo. Construyo plataformas web rápidas, confiables y con arquitectura moderna para negocios en Ecuador.
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+              Soy <strong>{PORTFOLIO_DATA.personalInfo.name}</strong> (<span className="text-rose-400 font-mono font-bold">@{PORTFOLIO_DATA.personalInfo.handle}</span>). Ingeniero en Seguridad Industrial graduado en la <strong>{PORTFOLIO_DATA.personalInfo.university}</strong> y desarrollador de software autónomo. Construyo plataformas web rápidas, confiables y con arquitectura moderna para negocios en Ecuador.
             </p>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3">
-              <a
-                href="#proyectos"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(244,63,94,0.4)]"
+            {/* Creative Quick Action Buttons: Cotizar & Ver Servicios */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-3">
+              
+              {/* Primary CTA: Cotizar Ahora */}
+              <Link
+                to="/cotizar"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white font-extrabold text-xs sm:text-sm font-heading flex items-center justify-center gap-2.5 transition-all shadow-[0_0_30px_rgba(244,63,94,0.45)] ring-1 ring-rose-400/60 active:scale-98 group"
               >
-                <span>Ver Proyectos en Marcha</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+                <Calculator className="w-4 h-4 text-rose-200 group-hover:rotate-12 transition-transform" />
+                <span>Cotizar Proyecto en Línea</span>
+                <ArrowRight className="w-4 h-4 text-rose-200 group-hover:translate-x-1 transition-transform" />
+              </Link>
 
-              <a
-                href="#contacto"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#140b0f]/90 hover:bg-[#1c0f16] border border-rose-900/40 text-slate-200 hover:text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-md transition-colors"
+              {/* Secondary CTA: Ver Servicios */}
+              <Link
+                to="/servicios"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#140b0f]/90 hover:bg-[#200e18] border border-rose-500/30 hover:border-rose-400/60 text-slate-100 hover:text-white font-bold text-xs sm:text-sm font-heading flex items-center justify-center gap-2.5 backdrop-blur-md transition-all shadow-md group"
               >
-                <Mail className="w-4 h-4 text-rose-400" />
-                <span>Contactar</span>
-              </a>
+                <Layers className="w-4 h-4 text-rose-400 group-hover:scale-110 transition-transform" />
+                <span>Ver Servicios &amp; Catálogo</span>
+                <Sparkles className="w-3.5 h-3.5 text-amber-300 opacity-70 group-hover:opacity-100 transition-opacity" />
+              </Link>
+
             </div>
           </div>
 
