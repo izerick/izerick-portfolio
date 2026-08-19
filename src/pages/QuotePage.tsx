@@ -210,17 +210,17 @@ export const QuotePage: React.FC = () => {
     const advance50 = Math.round(totalDevPrice / 2);
     const delivery50 = totalDevPrice - advance50;
 
-    const msg = `📋 *PROPUESTA / COTIZACIÓN COMERCIAL* (izerick.dev)\n\n` +
-      `👤 *Cliente / Empresa:* ${clientName || 'No especificado'}\n` +
-      `📱 *Contacto / Correo:* ${clientContact || 'Directo por este chat'}\n` +
-      `💼 *Servicio Base:* ${selectedService.name} ($${selectedService.price} USD)\n` +
-      `⚡ *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)\n` +
-      `☁️ *Alojamiento & Dominio:* ${hostingText}\n\n` +
-      `💰 *TOTAL FACTURA DESARROLLO:* $${totalDevPrice} USD\n` +
+    const msg = `*PROPUESTA / COTIZACIÓN COMERCIAL* (izerick.dev)\n\n` +
+      `• *Cliente / Empresa:* ${clientName || 'No especificado'}\n` +
+      `• *Contacto / Correo:* ${clientContact || 'Directo por este chat'}\n` +
+      `• *Servicio Base:* ${selectedService.name} ($${selectedService.price} USD)\n` +
+      `• *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)\n` +
+      `• *Alojamiento & Dominio:* ${hostingText}\n\n` +
+      `*TOTAL FACTURA DESARROLLO:* $${totalDevPrice} USD\n` +
       `• *Anticipo (50%):* $${advance50} USD para iniciar\n` +
       `• *Contra Entrega (50%):* $${delivery50} USD al terminar\n` +
-      `⏱️ *Tiempo Estimado de Entrega:* ${selectedService.time}\n\n` +
-      `📝 *Notas / Requerimientos:* ${clientProjectNote || 'Deseo coordinar para iniciar el proyecto.'}`;
+      `• *Tiempo Estimado de Entrega:* ${selectedService.time}\n\n` +
+      `• *Notas / Requerimientos:* ${clientProjectNote || 'Deseo coordinar para iniciar el proyecto.'}`;
 
     window.open(`https://wa.me/593967097679?text=${encodeURIComponent(msg)}`, '_blank');
   };
