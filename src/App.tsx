@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { BackgroundScrollCanvas } from './components/BackgroundScrollCanvas';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -51,8 +52,9 @@ export function App() {
         {/* Global Floating WhatsApp Button (Bottom Right z-[9998]) */}
         <FloatingWhatsAppButton />
 
-        {/* Vercel Real-Time Analytics Tracker */}
+        {/* Vercel Real-Time Analytics & Speed Insights Trackers */}
         <Analytics />
+        <SpeedInsights />
 
       </div>
     </Router>
