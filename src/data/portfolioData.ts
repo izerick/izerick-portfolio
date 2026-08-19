@@ -129,5 +129,9 @@ export const PORTFOLIO_DATA = {
     { name: 'Cloud & Edge Infrastructure', category: 'DevOps', description: 'Despliegues globales, SSL y alta disponibilidad' },
     { name: 'APIs & Webhooks', category: 'DevOps', description: 'Integración con Telegram, Notion y pasarelas' },
     { name: 'Git / GitHub CI/CD', category: 'DevOps', description: 'Despliegues automatizados' }
-  ]
+  ],
+
+  get techStack() {
+    return this.skills;
+  }
 };
