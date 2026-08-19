@@ -118,7 +118,7 @@ const OFFER_FAQS = [
   },
   {
     q: '¿Este plan de $35/mes aplica para Tiendas Online o Sistemas SaaS?',
-    a: 'No. El plan de suscripción de $35/mes está diseñado exclusivamente para Landing Pages comerciales de 1 página enfocadas en conversión y captación de clientes. Proyectos de alta complejidad como Tiendas E-Commerce con carrito e inventario masivo ($420) o Sistemas SaaS / Clínicos a medida ($680) requieren arquitectura dedicada y se cotizan de forma independiente en nuestro Cotizador.'
+    a: 'No. El plan de suscripción de $35/mes está diseñado para Landing Pages y Sitios Web Corporativos de hasta 5 secciones. Proyectos de alta complejidad como Tiendas E-Commerce con carrito e inventario masivo ($360) o Sistemas SaaS / Clínicos a medida ($450 - $1,200) requieren arquitectura dedicada y se cotizan de forma independiente en nuestro Cotizador.'
   },
   {
     q: '¿Qué tipo de cambios incluye el soporte mensual?',
@@ -491,7 +491,7 @@ export const LandingPageOffer: React.FC = () => {
             <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 text-[11px] text-slate-300 space-y-1">
               <span className="text-rose-400 font-bold font-mono block">📌 Alcance de este Plan:</span>
               <p>
-                Válido para <strong>Landing Pages y Sitios Web Corporativos de hasta 5 secciones</strong> con enfoque en conversión. Para tiendas con inventario masivo ($420) o sistemas SaaS multi-usuario ($680), utiliza nuestro <Link to="/cotizar" className="text-rose-400 underline hover:text-white font-semibold">Cotizador Interactivo</Link>.
+                Válido para <strong>Landing Pages y Sitios Web Corporativos de hasta 5 secciones</strong> con enfoque en conversión. Para tiendas con inventario masivo ($360) o sistemas SaaS multi-usuario ($450 - $1,200), utiliza nuestro <Link to="/cotizar" className="text-rose-400 underline hover:text-white font-semibold">Cotizador Interactivo</Link>.
               </p>
             </div>
           </div>

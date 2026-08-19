@@ -25,6 +25,7 @@ interface ServiceOption {
   name: string;
   category: string;
   price: number;
+  priceLabel?: string;
   time: string;
   desc: string;
   icon: any;
@@ -64,7 +65,7 @@ const SERVICES: ServiceOption[] = [
     id: 'ecommerce',
     name: 'Tienda Online / E-commerce',
     category: 'Ventas Digitales',
-    price: 420,
+    price: 360,
     time: '8-12 días',
     desc: 'Catálogo de productos, carrito de compras, pedidos por WhatsApp o pasarela.',
     icon: ShoppingBag,
@@ -73,9 +74,10 @@ const SERVICES: ServiceOption[] = [
     id: 'saas-system',
     name: 'Sistema Web / SaaS a Medida',
     category: 'Software Avanzado',
-    price: 680,
+    price: 450,
+    priceLabel: 'Desde $450 - $1,200 USD',
     time: '2-4 semanas',
-    desc: 'Panel administrativo, base de datos privada, autenticación y lógica a medida.',
+    desc: 'Panel administrativo, base de datos privada, autenticación y lógica a medida ($450 a $1,200 según módulos).',
     icon: Database,
   },
   {
@@ -347,8 +349,8 @@ export const QuotePage: React.FC = () => {
                         <span className="font-mono text-slate-400 text-[11px] flex items-center gap-1">
                           <Clock className="w-3 h-3 text-slate-400" /> {srv.time}
                         </span>
-                        <span className="font-heading font-extrabold text-white">
-                          ${srv.price} USD
+                        <span className="font-heading font-extrabold text-white text-right">
+                          {srv.priceLabel || `$${srv.price} USD`}
                         </span>
                       </div>
                     </div>
