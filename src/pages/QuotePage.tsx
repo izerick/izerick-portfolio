@@ -67,7 +67,7 @@ const SERVICES: ServiceOption[] = [
     category: 'Ventas Digitales',
     price: 360,
     time: '8-12 días',
-    desc: 'Catálogo de productos, carrito de compras, pedidos por WhatsApp o pasarela.',
+    desc: 'Catálogo de productos, carrito de compras y pedidos directos a WhatsApp.',
     icon: ShoppingBag,
   },
   {
@@ -75,9 +75,9 @@ const SERVICES: ServiceOption[] = [
     name: 'Sistema Web / SaaS a Medida',
     category: 'Software Avanzado',
     price: 450,
-    priceLabel: 'Desde $450 - $1,200 USD',
+    priceLabel: 'Desde $450 USD',
     time: '2-4 semanas',
-    desc: 'Panel administrativo, base de datos privada, autenticación y lógica a medida ($450 a $1,200 según módulos).',
+    desc: 'Panel administrativo, base de datos y lógica a medida ($450 a $1,200 según módulos).',
     icon: Database,
   },
   {
@@ -86,7 +86,7 @@ const SERVICES: ServiceOption[] = [
     category: 'Menús & Flujos Rápidos',
     price: 40,
     time: '1-2 días',
-    desc: 'Menú interactivo con botones de opciones, respuestas a preguntas frecuentes, captura de prospectos y alertas instantáneas a Telegram.',
+    desc: 'Menú interactivo con botones de opciones, respuestas automáticas y alertas a Telegram.',
     icon: Bot,
   },
   {
@@ -95,7 +95,7 @@ const SERVICES: ServiceOption[] = [
     category: 'Inteligencia Artificial (ChatGPT)',
     price: 120,
     time: '3-5 días',
-    desc: 'Vendedor virtual con IA entrenado con tu catálogo, precios y políticas. Atiende de forma fluida y natural como un humano las 24 horas.',
+    desc: 'Vendedor virtual con IA entrenado con tu catálogo y políticas para atención 24 horas.',
     icon: Sparkles,
     popular: true,
   },
@@ -319,7 +319,7 @@ export const QuotePage: React.FC = () => {
                     <div
                       key={srv.id}
                       onClick={() => setSelectedService(srv)}
-                      className={`p-4 rounded-2xl border cursor-pointer transition-all relative overflow-hidden ${
+                      className={`p-4 rounded-2xl border cursor-pointer transition-all relative overflow-hidden flex flex-col justify-between h-full ${
                         isSelected
                           ? 'bg-rose-950/40 border-rose-500 shadow-[0_0_25px_rgba(244,63,94,0.3)] ring-1 ring-rose-500'
                           : 'bg-[#11070e]/80 border-rose-950/60 hover:border-rose-700/50 hover:bg-[#160912]'
@@ -331,19 +331,21 @@ export const QuotePage: React.FC = () => {
                         </span>
                       )}
 
-                      <div className="flex items-start gap-3">
-                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                          isSelected ? 'bg-rose-600 text-white' : 'bg-rose-950/80 text-rose-300'
-                        }`}>
-                          <Icon className="w-4 h-4" />
+                      <div>
+                        <div className="flex items-start gap-3">
+                          <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                            isSelected ? 'bg-rose-600 text-white' : 'bg-rose-950/80 text-rose-300'
+                          }`}>
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-bold text-white leading-snug">{srv.name}</h4>
+                            <span className="text-[10px] font-mono text-rose-400 block mt-0.5">{srv.category}</span>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-xs font-bold text-white leading-snug">{srv.name}</h4>
-                          <span className="text-[10px] font-mono text-rose-400 block mt-0.5">{srv.category}</span>
-                        </div>
-                      </div>
 
-                      <p className="text-[11px] text-slate-400 mt-2.5 leading-relaxed">{srv.desc}</p>
+                        <p className="text-[11px] text-slate-400 mt-2.5 leading-relaxed min-h-[34px]">{srv.desc}</p>
+                      </div>
 
                       <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-xs">
                         <span className="font-mono text-slate-400 text-[11px] flex items-center gap-1">
