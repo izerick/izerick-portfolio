@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   Calculator, 
   Check, 
@@ -137,6 +138,9 @@ const EXTRAS: ExtraOption[] = [
 ];
 
 export const QuotePage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const serviceParam = searchParams.get('servicio');
+
   const [selectedService, setSelectedService] = useState<ServiceOption>(SERVICES[0]);
   const [selectedExtras, setSelectedExtras] = useState<string[]>(['whatsapp-pro', 'seo-local']);
   const [hostingOption, setHostingOption] = useState<'vps-included' | 'client-hosting'>('vps-included');
@@ -148,7 +152,25 @@ export const QuotePage: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (serviceParam) {
+      const aliasMap: Record<string, string> = {
+        'landing': 'landing',
+        'web-dev': 'landing',
+        'web-corp': 'web-corp',
+        'ecommerce': 'ecommerce',
+        'saas': 'saas-system',
+        'saas-system': 'saas-system',
+        'bot-auto': 'bot-auto',
+        'bot-ia': 'bot-ia',
+        'cloud-hosting': 'web-corp'
+      };
+      const targetId = aliasMap[serviceParam] || serviceParam;
+      const match = SERVICES.find((s) => s.id === targetId);
+      if (match) {
+        setSelectedService(match);
+      }
+    }
+  }, [serviceParam]);
 
   const toggleExtra = (extraId: string) => {
     setSelectedExtras((prev) =>

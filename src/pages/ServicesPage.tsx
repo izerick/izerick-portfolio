@@ -29,12 +29,15 @@ interface ServiceCardData {
   description: string;
   idealFor: string;
   deliverables: string[];
+  quoteId?: string;
+  quoteUrl?: string;
   popular?: boolean;
 }
 
 const MAIN_SERVICES: ServiceCardData[] = [
   {
     id: 'web-dev',
+    quoteId: 'landing',
     number: '01',
     title: 'Desarrollo Web & Landing Pages',
     category: 'Presencia & Conversión',
@@ -53,6 +56,7 @@ const MAIN_SERVICES: ServiceCardData[] = [
   },
   {
     id: 'ecommerce',
+    quoteId: 'ecommerce',
     number: '02',
     title: 'Tiendas Online & Catálogos E-Commerce',
     category: 'Comercio Digital',
@@ -70,6 +74,7 @@ const MAIN_SERVICES: ServiceCardData[] = [
   },
   {
     id: 'saas',
+    quoteId: 'saas-system',
     number: '03',
     title: 'Sistemas Web & SaaS a Medida',
     category: 'Software Avanzado',
@@ -87,6 +92,7 @@ const MAIN_SERVICES: ServiceCardData[] = [
   },
   {
     id: 'bot-auto',
+    quoteId: 'bot-auto',
     number: '04',
     title: 'Bots de WhatsApp Automatizados',
     category: 'Atención Inmediata',
@@ -104,6 +110,7 @@ const MAIN_SERVICES: ServiceCardData[] = [
   },
   {
     id: 'bot-ia',
+    quoteId: 'bot-ia',
     number: '05',
     title: 'Asistentes Virtuales con IA (ChatGPT 24/7)',
     category: 'Inteligencia Artificial',
@@ -122,6 +129,7 @@ const MAIN_SERVICES: ServiceCardData[] = [
   },
   {
     id: 'cloud-hosting',
+    quoteUrl: '/landing-page',
     number: '06',
     title: 'Alojamiento Cloud & Mantenimiento Continuo',
     category: 'Infraestructura',
@@ -331,7 +339,7 @@ export const ServicesPage: React.FC = () => {
                     </div>
 
                     <Link
-                      to="/cotizar"
+                      to={svc.quoteUrl || `/cotizar?servicio=${svc.quoteId || svc.id}`}
                       className="px-4 py-2 rounded-xl bg-rose-950/70 hover:bg-rose-900 border border-rose-500/40 text-rose-200 hover:text-white font-bold text-xs flex items-center gap-1.5 transition-all group-hover:border-rose-400"
                     >
                       <span>Cotizar</span>
