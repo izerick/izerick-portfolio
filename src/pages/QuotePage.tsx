@@ -163,16 +163,16 @@ export const QuotePage: React.FC = () => {
       ? 'Servidor Cloud VPS Gestionado ($12 USD / mes)' 
       : 'Ya cuento con hosting y dominio ($0)';
 
-    const msg = `¡Hola Erick! Vengo desde el Cotizador de izerick.dev y configuré la siguiente propuesta:%0A%0A` +
-      `🛠️ *Servicio:* ${selectedService.name} ($${selectedService.price} USD)%0A` +
-      `✨ *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)%0A` +
-      `🖥️ *Alojamiento & Dominio:* ${hostingText}%0A` +
-      `💰 *Inversión Desarrollo:* $${totalDevPrice} USD%0A` +
-      `⏱️ *Tiempo Estimado de Entrega:* ${selectedService.time}%0A%0A` +
-      `👤 *Nombre / Empresa:* ${clientName || 'No especificado'}%0A` +
+    const msg = `¡Hola Erick! Vengo desde el Cotizador de izerick.dev y configuré la siguiente propuesta:\n\n` +
+      `🛠️ *Servicio:* ${selectedService.name} ($${selectedService.price} USD)\n` +
+      `✨ *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)\n` +
+      `🖥️ *Alojamiento & Dominio:* ${hostingText}\n` +
+      `💰 *Inversión Desarrollo:* $${totalDevPrice} USD\n` +
+      `⏱️ *Tiempo Estimado de Entrega:* ${selectedService.time}\n\n` +
+      `👤 *Nombre / Empresa:* ${clientName || 'No especificado'}\n` +
       `📝 *Notas:* ${clientProjectNote || 'Deseo más información para iniciar.'}`;
 
-    window.open(`https://wa.me/593967097679?text=${msg}`, '_blank');
+    window.open(`https://wa.me/593967097679?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const handleSubmitLead = async (e: React.FormEvent) => {
