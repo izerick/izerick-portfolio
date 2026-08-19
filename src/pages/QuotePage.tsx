@@ -164,13 +164,13 @@ export const QuotePage: React.FC = () => {
       : 'Ya cuento con hosting y dominio ($0)';
 
     const msg = `¡Hola Erick! Vengo desde el Cotizador de izerick.dev y configuré la siguiente propuesta:\n\n` +
-      `🚀 *Servicio:* ${selectedService.name} ($${selectedService.price} USD)\n` +
-      `⚡ *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)\n` +
-      `🌐 *Alojamiento & Dominio:* ${hostingText}\n` +
-      `💵 *Inversión Desarrollo:* $${totalDevPrice} USD\n` +
-      `⏳ *Tiempo Estimado de Entrega:* ${selectedService.time}\n\n` +
-      `👤 *Nombre / Empresa:* ${clientName || 'No especificado'}\n` +
-      `📌 *Notas:* ${clientProjectNote || 'Deseo más información para iniciar.'}`;
+      `• *Servicio:* ${selectedService.name} ($${selectedService.price} USD)\n` +
+      `• *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)\n` +
+      `• *Alojamiento & Dominio:* ${hostingText}\n` +
+      `• *Inversión Desarrollo:* $${totalDevPrice} USD\n` +
+      `• *Tiempo Estimado de Entrega:* ${selectedService.time}\n\n` +
+      `• *Nombre / Empresa:* ${clientName || 'No especificado'}\n` +
+      `• *Notas:* ${clientProjectNote || 'Deseo más información para iniciar.'}`;
 
     window.open(`https://wa.me/593967097679?text=${encodeURIComponent(msg)}`, '_blank');
   };
