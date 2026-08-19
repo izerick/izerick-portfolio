@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Calculator, ArrowUpRight, MapPin, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Calculator, ArrowUpRight, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, MessageSquare } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export const ContactSection: React.FC = () => {
