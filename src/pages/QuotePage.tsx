@@ -17,6 +17,7 @@ import {
   CreditCard,
   Server
 } from 'lucide-react';
+import { FAQSection } from '../components/FAQSection';
 
 interface ServiceOption {
   id: string;
@@ -579,6 +580,11 @@ export const QuotePage: React.FC = () => {
 
           </div>
 
+        </div>
+
+        {/* Interactive FAQ Section below quote builder */}
+        <div className="mt-20">
+          <FAQSection />
         </div>
 
       </div>

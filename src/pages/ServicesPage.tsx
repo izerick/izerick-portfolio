@@ -6,6 +6,7 @@ import {
   Check
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
+import { FAQSection } from '../components/FAQSection';
 
 export const ServicesPage: React.FC = () => {
   useEffect(() => {
@@ -89,6 +90,9 @@ export const ServicesPage: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* Interactive FAQ Section */}
+        <FAQSection />
 
         {/* Bottom Banner */}
         <div className="tech-card rounded-3xl p-8 sm:p-10 bg-gradient-to-r from-[#180a13] to-[#0f060b] border border-rose-500/40 text-center max-w-4xl mx-auto">
