@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { X, ArrowRight, Flame, Sparkles } from 'lucide-react';
 
 export const PromoToast: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const location = useLocation();
+
+  // Hide toast and tab completely on landing-page and cotizar routes
+  const isHiddenRoute = location.pathname === '/landing-page' || location.pathname === '/cotizar';
 
   useEffect(() => {
+    if (isHiddenRoute) return;
+
     // Show after 3 seconds
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isHiddenRoute]);
+
+  if (isHiddenRoute) return null;
 
   const handleMinimize = (e: React.MouseEvent) => {
     e.preventDefault();

@@ -117,6 +117,10 @@ const OFFER_FAQS = [
     a: 'Una vez que nos compartas tu logo, información básica y fotos, tu página web estará 100% lista y publicada en tu dominio .com en un plazo de 5 a 7 días hábiles.'
   },
   {
+    q: '¿Este plan de $35/mes aplica para Tiendas Online o Sistemas SaaS?',
+    a: 'No. El plan de suscripción de $35/mes está diseñado exclusivamente para Landing Pages comerciales de 1 página enfocadas en conversión y captación de clientes. Proyectos de alta complejidad como Tiendas E-Commerce con carrito e inventario masivo ($420) o Sistemas SaaS / Clínicos a medida ($680) requieren arquitectura dedicada y se cotizan de forma independiente en nuestro Cotizador.'
+  },
+  {
     q: '¿Qué tipo de cambios incluye el soporte mensual?',
     a: 'Incluye cambios de textos, actualización de números de teléfono, reemplazo de imágenes o fotos de productos, actualización de horarios y mantenimiento preventivo de seguridad.'
   }
@@ -366,6 +370,14 @@ export const LandingPageOffer: React.FC = () => {
               <span>
                 <strong>Aceptamos únicamente 5 clientes bajo este plan al mes</strong> para garantizar atención personalizada y dedicación completa a cada negocio.
               </span>
+            </div>
+
+            {/* Scope Note */}
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 text-[11px] text-slate-300 space-y-1">
+              <span className="text-rose-400 font-bold font-mono block">📌 Alcance de este Plan:</span>
+              <p>
+                Válido para <strong>Landing Pages de 1 página comercial</strong> enfocadas en captación de prospectos y conversión. Para tiendas con inventario masivo ($420) o sistemas SaaS multi-usuario ($680), utiliza nuestro <Link to="/cotizar" className="text-rose-400 underline hover:text-white font-semibold">Cotizador Interactivo</Link>.
+              </p>
             </div>
           </div>
 
