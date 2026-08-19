@@ -193,7 +193,7 @@ export const QuotePage: React.FC = () => {
         name: clientName,
         contact: clientContact,
         service: `COTIZADOR: ${selectedService.name} ($${totalDevPrice} USD)`,
-        message: `📋 RESUMEN DE COTIZACIÓN:%0A• Servicio: ${selectedService.name} ($${selectedService.price} USD)%0A• Extras: ${extrasNames || 'Ninguno'} (+$${extrasTotal} USD)%0A• Servidor: ${hostingText}%0A• Inversión Desarrollo: $${totalDevPrice} USD%0A• Entrega Estimada: ${selectedService.time}%0A• Detalles del Cliente: ${clientProjectNote || 'Sin notas adicionales'}`,
+        message: `📋 RESUMEN DE COTIZACIÓN:\n• Servicio: ${selectedService.name} ($${selectedService.price} USD)\n• Extras: ${extrasNames || 'Ninguno'} (+$${extrasTotal} USD)\n• Servidor: ${hostingText}\n• Inversión Desarrollo: $${totalDevPrice} USD\n• Entrega Estimada: ${selectedService.time}\n• Detalles del Cliente: ${clientProjectNote || 'Sin notas adicionales'}`,
       };
 
       const res = await fetch('/api/lead', {
