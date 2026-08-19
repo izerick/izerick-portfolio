@@ -323,14 +323,129 @@ export const LandingPageOffer: React.FC = () => {
           </div>
         </div>
 
-        {/* 4. INVESTMENT SUMMARY & DIRECT FORM */}
+        {/* 4. INVERSIÓN ACCESIBLE (Digital Space Inspired 2-Card Layout) */}
+        <div className="mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="mono-label text-rose-400">Planes Transparentes</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading mt-1">
+              Inversión <span className="crimson-gradient-text">Accesible</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 mt-2">
+              Sin sorpresas ni cobros ocultos. Todo incluido en un plan simple.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+            
+            {/* Card 1: Oferta de Lanzamiento (12 Meses) */}
+            <div className="tech-card rounded-3xl p-7 sm:p-9 bg-gradient-to-b from-[#190914] to-[#0f050b] border-2 border-rose-500/70 shadow-[0_0_50px_rgba(244,63,94,0.3)] relative flex flex-col justify-between text-left group">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-rose-600 to-red-600 text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-4 shadow-sm">
+                  <Zap className="w-3.5 h-3.5 fill-white" /> Oferta de Lanzamiento
+                </span>
+
+                <div className="mb-2">
+                  <span className="text-xs font-mono text-slate-400 block">Precio especial:</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl sm:text-5xl font-black text-white font-heading">$35</span>
+                    <span className="text-sm font-mono text-rose-300 font-bold">USD / mes</span>
+                  </div>
+                  <span className="text-xs font-mono font-semibold text-rose-400 block mt-1">
+                    Contrato mínimo 12 meses
+                  </span>
+                </div>
+
+                <p className="text-xs text-slate-300 leading-relaxed mb-6 pt-2 border-t border-rose-950">
+                  La forma más inteligente de tener tu web profesional sin pagar cientos de dólares de golpe.
+                </p>
+
+                {/* Features */}
+                <div className="space-y-3 mb-8">
+                  {[
+                    'Landing Page o Web Corporativa (hasta 5 secciones)',
+                    'Dominio oficial .com propio incluido',
+                    'Alojamiento Cloud 24/7 + Certificado SSL',
+                    'Optimización SEO local para búsquedas en Google',
+                    'Botón WhatsApp Business + Formulario a Telegram',
+                    'Mantenimiento y soporte técnico continuo',
+                    'Entrega rápida garantizada en 5 a 7 días'
+                  ].map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-200">
+                      <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href="#formulario-oferta"
+                className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(244,63,94,0.4)] transition-all"
+              >
+                <span>Empezar Ahora por $35/mes →</span>
+              </a>
+            </div>
+
+            {/* Card 2: Plan Regular (Sin Contrato Mínimo) */}
+            <div className="tech-card rounded-3xl p-7 sm:p-9 bg-[#11060e]/80 border border-rose-950/80 hover:border-rose-500/40 transition-all flex flex-col justify-between text-left">
+              <div>
+                <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 text-[10px] font-mono font-bold uppercase tracking-wider mb-4">
+                  Flexibilidad Total
+                </span>
+
+                <div className="mb-2">
+                  <span className="text-xs font-mono text-slate-400 block">Precio regular:</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl sm:text-5xl font-black text-white font-heading">$49</span>
+                    <span className="text-sm font-mono text-slate-400 font-bold">USD / mes</span>
+                  </div>
+                  <span className="text-xs font-mono font-semibold text-slate-400 block mt-1">
+                    Sin contrato mínimo (Cancela cuando quieras)
+                  </span>
+                </div>
+
+                <p className="text-xs text-slate-300 leading-relaxed mb-6 pt-2 border-t border-rose-950">
+                  Ideal para campañas estacionales o negocios que prefieren máxima libertad mes a mes.
+                </p>
+
+                {/* Features */}
+                <div className="space-y-3 mb-8">
+                  {[
+                    'Todo lo incluido en el plan de lanzamiento',
+                    'Flexibilidad mensual 100% libre',
+                    'Sin permanencia ni cláusulas de 12 meses',
+                    'Mismo servicio y calidad de ingeniería',
+                    'Entrega en 5 a 7 días hábiles'
+                  ].map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
+                      <Check className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href={`https://wa.me/${PORTFOLIO_DATA.personalInfo.whatsappRaw}?text=${encodeURIComponent('Hola Erick, me gustaría consultar por el Plan Flexible sin contrato de $49/mes.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all"
+              >
+                <span>Consultar Plan Flexible →</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        {/* 5. FORMULARIO DIRECTO CON SCOPE NOTE */}
         <div id="formulario-oferta" className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24 items-start">
           
           {/* Left Column: Plan Specs & Urgency */}
           <div className="lg:col-span-6 tech-card rounded-3xl p-7 sm:p-9 bg-[#130710]/95 border-2 border-rose-500/50 space-y-6 text-left shadow-[0_0_40px_rgba(244,63,94,0.2)]">
             <div className="flex items-center justify-between border-b border-rose-950 pb-4">
               <span className="text-xs font-mono font-bold text-rose-300 uppercase tracking-wider flex items-center gap-1.5">
-                <Star className="w-4 h-4 text-amber-300 fill-amber-300" /> PLAN 12 MESES
+                <Star className="w-4 h-4 text-amber-300 fill-amber-300" /> RESUMEN DEL SERVICIO
               </span>
               <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-rose-950 text-rose-300 border border-rose-500/30 font-bold">
                 Cupos Limitados
@@ -343,7 +458,7 @@ export const LandingPageOffer: React.FC = () => {
                 <span className="text-sm font-mono text-slate-400">USD / mes</span>
               </div>
               <p className="text-xs text-emerald-400 font-mono font-semibold mt-1">
-                ✓ Solo pagas $35 USD hoy para iniciar el diseño.
+                ✓ Solo pagas $35 USD hoy para iniciar el diseño de tu web.
               </p>
             </div>
 
@@ -376,7 +491,7 @@ export const LandingPageOffer: React.FC = () => {
             <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 text-[11px] text-slate-300 space-y-1">
               <span className="text-rose-400 font-bold font-mono block">📌 Alcance de este Plan:</span>
               <p>
-                Válido para <strong>Landing Pages de 1 página comercial</strong> enfocadas en captación de prospectos y conversión. Para tiendas con inventario masivo ($420) o sistemas SaaS multi-usuario ($680), utiliza nuestro <Link to="/cotizar" className="text-rose-400 underline hover:text-white font-semibold">Cotizador Interactivo</Link>.
+                Válido para <strong>Landing Pages y Sitios Web Corporativos de hasta 5 secciones</strong> con enfoque en conversión. Para tiendas con inventario masivo ($420) o sistemas SaaS multi-usuario ($680), utiliza nuestro <Link to="/cotizar" className="text-rose-400 underline hover:text-white font-semibold">Cotizador Interactivo</Link>.
               </p>
             </div>
           </div>
