@@ -80,8 +80,8 @@ const SERVICES: ServiceOption[] = [
     id: 'bot-auto',
     name: 'Bot de WhatsApp Automatizado',
     category: 'Menús & Flujos Rápidos',
-    price: 120,
-    time: '2-3 días',
+    price: 40,
+    time: '1-2 días',
     desc: 'Menú interactivo con botones de opciones, respuestas a preguntas frecuentes, captura de prospectos y alertas instantáneas a Telegram.',
     icon: Bot,
   },
@@ -89,10 +89,11 @@ const SERVICES: ServiceOption[] = [
     id: 'bot-ia',
     name: 'Asistente Virtual con IA 24/7',
     category: 'Inteligencia Artificial (ChatGPT)',
-    price: 220,
-    time: '4-6 días',
+    price: 120,
+    time: '3-5 días',
     desc: 'Vendedor virtual con IA entrenado con tu catálogo, precios y políticas. Atiende de forma fluida y natural como un humano las 24 horas.',
     icon: Sparkles,
+    popular: true,
   },
 ];
 
@@ -162,6 +163,15 @@ export const QuotePage: React.FC = () => {
 
   const totalDevPrice = selectedService.price + extrasTotal;
 
+  // Dynamic monthly fee based on service type
+  const getMonthlyFee = () => {
+    if (hostingOption === 'client-hosting') return 0;
+    if (selectedService.id === 'bot-auto') return 3;
+    if (selectedService.id === 'bot-ia') return 6;
+    return 12;
+  };
+  const monthlyAmount = getMonthlyFee();
+
   const handleSendToWhatsapp = () => {
     const extrasNames = selectedExtras
       .map((id) => EXTRAS.find((e) => e.id === id)?.name)
@@ -169,13 +179,13 @@ export const QuotePage: React.FC = () => {
       .join(', ');
 
     const hostingText = hostingOption === 'vps-included' 
-      ? 'Servidor Cloud VPS Gestionado ($12 USD / mes)' 
+      ? `Servidor Cloud Gestionado ($${monthlyAmount} USD / mes)` 
       : 'Ya cuento con hosting y dominio ($0)';
 
     const msg = `¡Hola Erick! Vengo desde el Cotizador de izerick.dev y configuré la siguiente propuesta:\n\n` +
       `• *Servicio:* ${selectedService.name} ($${selectedService.price} USD)\n` +
       `• *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)\n` +
-      `• *Alojamiento & Dominio:* ${hostingText}\n` +
+      `• *Alojamiento & Mantenimiento:* ${hostingText}\n` +
       `• *Inversión Desarrollo:* $${totalDevPrice} USD\n` +
       `• *Tiempo Estimado de Entrega:* ${selectedService.time}\n\n` +
       `• *Nombre / Empresa:* ${clientName || 'No especificado'}\n` +
@@ -195,7 +205,9 @@ export const QuotePage: React.FC = () => {
         .filter(Boolean)
         .join(', ');
 
-      const hostingText = hostingOption === 'vps-included' ? 'VPS Gestionado ($12 USD / mes)' : 'Hosting Propio ($0)';
+      const hostingText = hostingOption === 'vps-included' 
+        ? `Servidor Cloud ($${monthlyAmount} USD / mes)` 
+        : 'Hosting Propio ($0)';
       const advance50 = Math.round(totalDevPrice / 2);
       const delivery50 = totalDevPrice - advance50;
 
@@ -206,7 +218,7 @@ export const QuotePage: React.FC = () => {
         totalDev: `$${totalDevPrice} USD`,
         advancePayment: `$${advance50} USD (50%)`,
         deliveryPayment: `$${delivery50} USD (50%)`,
-        monthlyFee: hostingOption === 'vps-included' ? '$12 USD / mes' : '$0 USD / mes (Hosting Propio)',
+        monthlyFee: hostingOption === 'vps-included' ? `$${monthlyAmount} USD / mes` : '$0 USD / mes (Hosting Propio)',
         estimatedTime: selectedService.time,
         serviceBase: `${selectedService.name} ($${selectedService.price} USD)`,
         extras: extrasNames || 'Ninguno',
@@ -381,7 +393,7 @@ export const QuotePage: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 
-                {/* Option 1: Cloud Managed ($12/month) */}
+                {/* Option 1: Cloud Managed */}
                 <div
                   onClick={() => setHostingOption('vps-included')}
                   className={`p-4 rounded-2xl border cursor-pointer transition-all ${
@@ -392,12 +404,14 @@ export const QuotePage: React.FC = () => {
                 >
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                      <Server className="w-3.5 h-3.5 text-rose-400" /> Servidor Cloud Gestionado
+                      <Server className="w-3.5 h-3.5 text-rose-400" /> Servidor Cloud &amp; Mantenimiento
                     </span>
-                    <span className="text-xs font-mono font-extrabold text-rose-300">$12 USD / mes</span>
+                    <span className="text-xs font-mono font-extrabold text-rose-300">${monthlyAmount} USD / mes</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Incluye infraestructura cloud de alta velocidad 24/7, Dominio .com, certificado SSL y copias de seguridad automáticas a cargo de Erick.
+                    {selectedService.id.startsWith('bot') 
+                      ? 'Incluye infraestructura cloud 24/7, consumo de API y soporte continuo a cargo de Erick.' 
+                      : 'Incluye infraestructura cloud de alta velocidad 24/7, Dominio .com, certificado SSL y copias de seguridad automáticas.'}
                   </p>
                 </div>
 
@@ -411,11 +425,11 @@ export const QuotePage: React.FC = () => {
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-bold text-white">Ya tengo Hosting / Dominio</span>
+                    <span className="text-xs font-bold text-white">Ya cuento con servidor / propio</span>
                     <span className="text-xs font-mono font-bold text-emerald-400">$0</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Si ya cuentas con tu propio proveedor de hosting y dominio (Hostinger, cPanel, Vercel), realizamos el despliegue directo en tu cuenta.
+                    Si ya cuentas con tu propio proveedor de servidor o infraestructura, realizamos la configuración y despliegue directo.
                   </p>
                 </div>
 
@@ -441,7 +455,7 @@ export const QuotePage: React.FC = () => {
               {/* Breakdown */}
               <div className="py-4 space-y-2.5 text-xs border-b border-rose-950/80">
                 <div className="flex items-center justify-between text-slate-200">
-                  <span>{selectedService.name} (Desarrollo)</span>
+                  <span>{selectedService.name}</span>
                   <span className="font-mono font-bold text-white">
                     ${selectedService.price} USD
                   </span>
@@ -459,9 +473,9 @@ export const QuotePage: React.FC = () => {
                 })}
 
                 <div className="flex items-center justify-between text-slate-400 text-[11px] pt-1">
-                  <span>Alojamiento Cloud &amp; Dominio:</span>
+                  <span>Alojamiento &amp; Mantenimiento:</span>
                   <span className="font-mono text-emerald-400 font-bold">
-                    {hostingOption === 'vps-included' ? '$12 USD / mes' : '$0 (Hosting Propio)'}
+                    {hostingOption === 'vps-included' ? `$${monthlyAmount} USD / mes` : '$0 (Propio)'}
                   </span>
                 </div>
               </div>
@@ -470,7 +484,7 @@ export const QuotePage: React.FC = () => {
               <div className="py-5 border-b border-rose-950/80 space-y-3">
                 <div className="flex items-baseline justify-between">
                   <div>
-                    <span className="text-[11px] text-slate-400 block font-mono">DESARROLLO (PAGO ÚNICO):</span>
+                    <span className="text-[11px] text-slate-400 block font-mono">INVERSIÓN (PAGO ÚNICO):</span>
                     <div className="flex items-baseline gap-1">
                       <span className="text-3xl sm:text-4xl font-black text-white font-heading">
                         ${totalDevPrice}
@@ -488,8 +502,8 @@ export const QuotePage: React.FC = () => {
 
                 {hostingOption === 'vps-included' && (
                   <div className="p-2.5 rounded-xl bg-rose-950/50 border border-rose-500/30 flex items-center justify-between text-xs">
-                    <span className="text-slate-300">Alojamiento Cloud + SSL + Dominio:</span>
-                    <span className="font-mono font-bold text-rose-300">$12 USD / mes</span>
+                    <span className="text-slate-300">Servidor Cloud &amp; Mantenimiento:</span>
+                    <span className="font-mono font-bold text-rose-300">${monthlyAmount} USD / mes</span>
                   </div>
                 )}
               </div>

@@ -120,15 +120,15 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: 'bot-auto',
-      title: 'Bots de WhatsApp Automatizados ($120 USD)',
+      title: 'Bots de WhatsApp Automatizados ($40 USD + $3/mes)',
       description: 'Automatización con menús interactivos y botones de opciones. Responde dudas frecuentes y captura el contacto del cliente hacia tu Telegram o Notion.',
-      deliverables: ['Menús interactivos con botones', 'Captura automática de prospectos', 'Alertas instantáneas a celular']
+      deliverables: ['Menús interactivos con botones', 'Captura automática de prospectos', 'Mantenimiento en la nube por $3/mes']
     },
     {
       id: 'bot-ia',
-      title: 'Asistentes Virtuales con IA 24/7 ($220 USD)',
+      title: 'Asistentes Virtuales con IA 24/7 ($120 USD + $6/mes)',
       description: 'Vendedor inteligente con Inteligencia Artificial (ChatGPT) entrenado con tu catálogo para atender, resolver dudas complejas y cerrar ventas de forma natural.',
-      deliverables: ['IA conversacional con ChatGPT', 'Entrenado con tu catálogo y precios', 'Atención humana fluida las 24 horas']
+      deliverables: ['IA conversacional con ChatGPT', 'Entrenado con tu catálogo y precios', 'Atención humana fluida las 24 horas ($6/mes)']
     }
   ] as ServiceItem[],
 
