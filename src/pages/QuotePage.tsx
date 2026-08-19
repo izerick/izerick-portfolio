@@ -166,12 +166,11 @@ export const QuotePage: React.FC = () => {
     const msg = `¡Hola Erick! Vengo desde el Cotizador de izerick.dev y configuré la siguiente propuesta:%0A%0A` +
       `🛠️ *Servicio:* ${selectedService.name} ($${selectedService.price} USD)%0A` +
       `✨ *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)%0A` +
-      `🖥️ *Alojamiento:* ${hostingText}%0A` +
-      `💰 *Desarrollo (Pago único):* $${totalDevPrice} USD%0A` +
-      `${hostingOption === 'vps-included' ? `🔄 *Alojamiento & Mantenimiento VPS:* $12 USD / mes%0A` : ''}` +
+      `🖥️ *Alojamiento & Dominio:* ${hostingText}%0A` +
+      `💰 *Inversión Desarrollo:* $${totalDevPrice} USD%0A` +
       `⏱️ *Tiempo Estimado de Entrega:* ${selectedService.time}%0A%0A` +
       `👤 *Nombre / Empresa:* ${clientName || 'No especificado'}%0A` +
-      `📝 *Notas del Proyecto:* ${clientProjectNote || 'Quiero más detalles.'}`;
+      `📝 *Notas:* ${clientProjectNote || 'Deseo más información para iniciar.'}`;
 
     window.open(`https://wa.me/593967097679?text=${msg}`, '_blank');
   };
