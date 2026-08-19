@@ -80,7 +80,7 @@ export const HeroSection: React.FC = () => {
                 <div>
                   <span className="text-slate-500 block text-[10px]">ENFOQUE EN SOFTWARE:</span>
                   <span className="text-slate-100 font-semibold">Desarrollador Autónomo / Autodidacta</span>
-                  <span className="text-slate-300 block text-[11px]">React • TypeScript • Cloud VPS</span>
+                  <span className="text-slate-300 block text-[11px]">React • TypeScript • Cloud Architecture</span>
                 </div>
 
                 <div>

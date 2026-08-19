@@ -79,12 +79,12 @@ export const AboutPage: React.FC = () => {
             </h3>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Constructor de ecosistemas digitales modernos con <strong>React, TypeScript, Node.js, Python y Docker</strong>. Administro servidores VPS de alta disponibilidad con Nginx, Coolify y automatizaciones en tiempo real.
+              Constructor de ecosistemas digitales modernos con <strong>React, TypeScript, Node.js, Python y Cloud Serverless</strong>. Despliego infraestructuras de alta disponibilidad con SSL, automatizaciones y bases de datos en la nube.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-rose-300">
               <span className="px-2.5 py-1 rounded bg-rose-950/60 border border-rose-500/20">React 19 &amp; TypeScript</span>
-              <span className="px-2.5 py-1 rounded bg-rose-950/60 border border-rose-500/20">Cloud VPS &amp; Nginx</span>
+              <span className="px-2.5 py-1 rounded bg-rose-950/60 border border-rose-500/20">Cloud &amp; Edge Deployment</span>
               <span className="px-2.5 py-1 rounded bg-rose-950/60 border border-rose-500/20">Lead Bots &amp; Notion API</span>
             </div>
           </div>

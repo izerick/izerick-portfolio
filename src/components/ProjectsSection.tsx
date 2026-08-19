@@ -39,7 +39,7 @@ export const ProjectsSection: React.FC = () => {
                 </div>
 
                 <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 shrink-0">
-                  🟢 En Producción (VPS)
+                  🟢 En Producción (Cloud Edge)
                 </span>
               </div>
 
@@ -60,13 +60,13 @@ export const ProjectsSection: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                  <span>Desplegado en Servidor VPS de Oracle Cloud con Nginx & SSL.</span>
+                  <span>Desplegado en Infraestructura Cloud de Alta Velocidad con SSL.</span>
                 </div>
               </div>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 pt-2">
-                {['React', 'TypeScript', 'Supabase', 'Oracle Cloud VPS', 'Nginx'].map(tag => (
+                {['React', 'TypeScript', 'Supabase', 'Cloud Hosting', 'SSL'].map(tag => (
                   <span
                     key={tag}
                     className="px-2 py-0.5 rounded bg-[#130a0e] border border-rose-950 text-[11px] font-mono text-slate-300"

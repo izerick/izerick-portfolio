@@ -85,7 +85,7 @@ export const AboutSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>Despliegues en servidores VPS Linux (Oracle Cloud + Nginx).</span>
+                <span>Despliegues en Infraestructura Cloud de Alta Velocidad (Edge & SSL).</span>
               </div>
             </div>
           </div>

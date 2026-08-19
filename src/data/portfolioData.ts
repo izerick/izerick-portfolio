@@ -120,14 +120,14 @@ export const PORTFOLIO_DATA = {
     }
   ] as ServiceItem[],
 
-  techStack: [
-    { name: 'React', category: 'Frontend', description: 'Interfaces reactivas y modulares' },
-    { name: 'TypeScript', category: 'Frontend', description: 'Código robusto y estructurado' },
-    { name: 'TailwindCSS', category: 'Frontend', description: 'Diseño limpio y minimalista' },
-    { name: 'Node.js', category: 'Backend', description: 'Entorno de ejecución moderno' },
-    { name: 'Supabase / PostgreSQL', category: 'Database', description: 'Base de datos en la nube y RLS' },
-    { name: 'Oracle Cloud VPS', category: 'DevOps', description: 'Servidores Linux en la nube' },
-    { name: 'Nginx', category: 'DevOps', description: 'Servidor web y reverse proxy' },
+  skills: [
+    { name: 'React 19 & Next.js', category: 'Frontend', description: 'Interfaces interactivas de alto rendimiento' },
+    { name: 'TypeScript', category: 'Frontend', description: 'Tipado estricto y código mantenible' },
+    { name: 'Tailwind CSS', category: 'Frontend', description: 'Diseño moderno, responsive y limpio' },
+    { name: 'Node.js & Python', category: 'Backend', description: 'APIs seguras, bots y automatizaciones' },
+    { name: 'Supabase & PostgreSQL', category: 'Database', description: 'Bases de datos en la nube y autenticación' },
+    { name: 'Cloud & Edge Infrastructure', category: 'DevOps', description: 'Despliegues globales, SSL y alta disponibilidad' },
+    { name: 'APIs & Webhooks', category: 'DevOps', description: 'Integración con Telegram, Notion y pasarelas' },
     { name: 'Git / GitHub CI/CD', category: 'DevOps', description: 'Despliegues automatizados' }
   ]
 };

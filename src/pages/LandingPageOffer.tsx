@@ -148,7 +148,7 @@ export const LandingPageOffer: React.FC = () => {
             <div className="space-y-4 mb-8">
               {[
                 { icon: Globe, title: 'Dominio Oficial .com Incluido', desc: 'Registramos y configuramos tu nombre web propio (ej: tuempresa.com).' },
-                { icon: Zap, title: 'Servidor Cloud VPS 24/7 de Alta Velocidad', desc: 'Alojado en infraestructura de primer nivel con 99.9% de disponibilidad garantizada.' },
+                { icon: Zap, title: 'Alojamiento Cloud 24/7 de Alta Velocidad', desc: 'Alojado en infraestructura de primer nivel con 99.9% de disponibilidad garantizada.' },
                 { icon: ShieldCheck, title: 'Certificado de Seguridad SSL Oficial', desc: 'Candado verde https:// y protección de datos para tus visitantes.' },
                 { icon: Sparkles, title: 'Diseño Web Responsive a Medida', desc: 'Estructurada para enamorar visualmente tanto en celulares como en computadoras.' },
                 { icon: Award, title: 'Posicionamiento SEO Local en Google', desc: 'Optimizada técnicamente para que tus clientes te encuentren al buscar tus servicios.' },

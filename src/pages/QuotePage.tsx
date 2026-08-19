@@ -366,13 +366,13 @@ export const QuotePage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <span className="w-6 h-6 rounded-full bg-rose-600 text-white font-mono font-bold text-xs flex items-center justify-center">3</span>
                 <h3 className="text-base font-bold text-white font-heading">
-                  Servidor Cloud VPS &amp; Dominio
+                  Alojamiento Cloud &amp; Dominio
                 </h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 
-                {/* Option 1: VPS Managed ($12/month) */}
+                {/* Option 1: Cloud Managed ($12/month) */}
                 <div
                   onClick={() => setHostingOption('vps-included')}
                   className={`p-4 rounded-2xl border cursor-pointer transition-all ${
@@ -383,12 +383,12 @@ export const QuotePage: React.FC = () => {
                 >
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                      <Server className="w-3.5 h-3.5 text-rose-400" /> Servidor VPS Gestionado
+                      <Server className="w-3.5 h-3.5 text-rose-400" /> Servidor Cloud Gestionado
                     </span>
                     <span className="text-xs font-mono font-extrabold text-rose-300">$12 USD / mes</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Incluye servidor cloud de alta velocidad 24/7, Dominio .com, certificado SSL y copias de seguridad automáticas a cargo de Erick.
+                    Incluye infraestructura cloud de alta velocidad 24/7, Dominio .com, certificado SSL y copias de seguridad automáticas a cargo de Erick.
                   </p>
                 </div>
 
@@ -479,7 +479,7 @@ export const QuotePage: React.FC = () => {
 
                 {hostingOption === 'vps-included' && (
                   <div className="p-2.5 rounded-xl bg-rose-950/50 border border-rose-500/30 flex items-center justify-between text-xs">
-                    <span className="text-slate-300">Alojamiento VPS + SSL + Dominio:</span>
+                    <span className="text-slate-300">Alojamiento Cloud + SSL + Dominio:</span>
                     <span className="font-mono font-bold text-rose-300">$12 USD / mes</span>
                   </div>
                 )}

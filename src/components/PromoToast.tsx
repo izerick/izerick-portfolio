@@ -42,19 +42,19 @@ export const PromoToast: React.FC = () => {
           >
             <button
               onClick={handleExpand}
-              className="relative group py-4 px-2.5 rounded-r-2xl bg-gradient-to-b from-rose-600 via-red-600 to-rose-700 text-white shadow-[0_0_30px_rgba(244,63,94,0.65)] hover:shadow-[0_0_40px_rgba(244,63,94,0.85)] border-t border-r border-b border-rose-300/50 flex flex-col items-center gap-2 cursor-pointer transition-all hover:pr-3.5 select-none"
+              className="relative group py-2.5 px-1.5 sm:py-3.5 sm:px-2.5 rounded-r-xl sm:rounded-r-2xl bg-gradient-to-b from-rose-600 via-red-600 to-rose-700 text-white shadow-[0_0_25px_rgba(244,63,94,0.6)] hover:shadow-[0_0_35px_rgba(244,63,94,0.85)] border-t border-r border-b border-rose-300/50 flex flex-col items-center gap-1.5 cursor-pointer transition-all hover:pr-3 select-none"
               aria-label="Abrir oferta especial"
             >
               {/* Pulse Radar Glow */}
-              <span className="absolute -inset-0.5 rounded-r-2xl bg-rose-500/40 animate-ping pointer-events-none" style={{ animationDuration: '2.5s' }} />
+              <span className="absolute -inset-0.5 rounded-r-xl sm:rounded-r-2xl bg-rose-500/30 animate-ping pointer-events-none" style={{ animationDuration: '2.5s' }} />
 
               {/* Flame Icon */}
-              <div className="p-1 rounded-full bg-white/20 text-amber-200">
-                <Flame className="w-3.5 h-3.5 fill-amber-300 animate-bounce" />
+              <div className="p-0.5 sm:p-1 rounded-full bg-white/20 text-amber-200">
+                <Flame className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-amber-300 animate-bounce" />
               </div>
 
               {/* Vertical Text: O F E R T A */}
-              <div className="writing-vertical flex flex-col items-center text-[10px] font-mono font-extrabold tracking-[0.25em] uppercase text-white drop-shadow">
+              <div className="flex flex-col items-center text-[8px] sm:text-[9px] font-mono font-extrabold tracking-[0.15em] uppercase text-white drop-shadow leading-tight">
                 <span>O</span>
                 <span>F</span>
                 <span>E</span>
@@ -64,7 +64,7 @@ export const PromoToast: React.FC = () => {
               </div>
 
               {/* Price Tag badge */}
-              <span className="text-[9px] font-mono font-black text-rose-950 bg-amber-300 px-1 py-0.5 rounded shadow-sm">
+              <span className="text-[8px] sm:text-[9px] font-mono font-black text-rose-950 bg-amber-300 px-1 py-0.2 rounded shadow-sm">
                 $35
               </span>
             </button>
