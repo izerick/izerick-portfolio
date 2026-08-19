@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Layers, 
   Globe, 
   ShoppingBag, 
   Database, 
@@ -13,11 +12,7 @@ import {
   MessageCircle, 
   Calculator, 
   ShieldCheck, 
-  Clock, 
-  Zap, 
-  HeartHandshake,
   Activity,
-  Award,
   Smartphone
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
