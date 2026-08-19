@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FolderGit2, 
   ExternalLink, 
-  X, 
   ArrowRight, 
   Check,
   Eye,
-  ShoppingBag,
   ShieldCheck,
-  Sparkles,
-  Layers,
-  Database,
   Smartphone,
   Globe
 } from 'lucide-react';
@@ -85,8 +79,6 @@ const PROJECTS_DATA: ProjectItemData[] = [
 ];
 
 export const ProjectsPage: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<ProjectItemData | null>(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -125,7 +117,7 @@ export const ProjectsPage: React.FC = () => {
 
         {/* Projects In-Depth Showcase with Visual Mockups */}
         <div className="space-y-12 mb-20">
-          {PROJECTS_DATA.map((proj, idx) => (
+          {PROJECTS_DATA.map((proj) => (
             <div
               key={proj.id}
               className="tech-card rounded-3xl p-6 sm:p-10 bg-[#10070e]/90 border-2 border-rose-950/80 hover:border-rose-500/40 transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
