@@ -9,7 +9,6 @@ import {
   Zap, 
   Sparkles, 
   ArrowRight, 
-  HelpCircle,
   Headphones,
   Send,
   MessageCircle,
@@ -19,7 +18,6 @@ import {
   FileText,
   Search,
   Smartphone,
-  Layers,
   Star
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
