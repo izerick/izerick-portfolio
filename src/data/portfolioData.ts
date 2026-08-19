@@ -36,6 +36,8 @@ export const PORTFOLIO_DATA = {
     location: 'Quevedo, Ecuador 🇪🇨',
     github: 'https://github.com/izerick',
     email: 'eric123joel@gmail.com',
+    whatsapp: '+593 967 097 679',
+    whatsappRaw: '593967097679',
     domain: 'https://izerick.dev'
   },
 

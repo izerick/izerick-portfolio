@@ -91,6 +91,29 @@ export const ContactSection: React.FC = () => {
             <div className="lg:col-span-5 space-y-4">
               <span className="mono-label text-xs text-rose-400 block mb-2">Canales Directos</span>
               
+              {/* WhatsApp Direct */}
+              <a
+                href={`https://wa.me/${PORTFOLIO_DATA.personalInfo.whatsappRaw}?text=${encodeURIComponent('¡Hola Erick! Vengo desde tu web izerick.dev y deseo consultar por un proyecto.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 sm:p-5 rounded-2xl bg-[#140b0f]/90 border border-emerald-950/60 hover:border-emerald-500/50 transition-all flex items-center justify-between group shadow-lg"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <MessageSquare className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-white font-heading block group-hover:text-emerald-300 transition-colors">
+                      WhatsApp Business
+                    </span>
+                    <span className="text-[11px] font-mono text-emerald-400 font-bold">
+                      {PORTFOLIO_DATA.personalInfo.whatsapp}
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+              </a>
+
               {/* Email Direct */}
               <a
                 href={`mailto:${PORTFOLIO_DATA.personalInfo.email}`}

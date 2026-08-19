@@ -15,8 +15,7 @@ import {
   Database,
   BarChart3,
   CreditCard,
-  Server,
-  AlertCircle
+  Server
 } from 'lucide-react';
 
 interface ServiceOption {
@@ -135,7 +134,6 @@ export const QuotePage: React.FC = () => {
   const [clientProjectNote, setClientProjectNote] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [sentSuccess, setSentSuccess] = useState(false);
-  const [showWhatsappNotice, setShowWhatsappNotice] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -154,6 +152,29 @@ export const QuotePage: React.FC = () => {
   }, 0);
 
   const totalDevPrice = selectedService.price + extrasTotal;
+
+  const handleSendToWhatsapp = () => {
+    const extrasNames = selectedExtras
+      .map((id) => EXTRAS.find((e) => e.id === id)?.name)
+      .filter(Boolean)
+      .join(', ');
+
+    const hostingText = hostingOption === 'vps-included' 
+      ? 'Servidor Cloud VPS Gestionado ($12 USD / mes)' 
+      : 'Ya cuento con hosting y dominio ($0)';
+
+    const msg = `¡Hola Erick! Vengo desde el Cotizador de izerick.dev y configuré la siguiente propuesta:%0A%0A` +
+      `🛠️ *Servicio:* ${selectedService.name} ($${selectedService.price} USD)%0A` +
+      `✨ *Funcionalidades Extra:* ${extrasNames || 'Ninguna'} (+$${extrasTotal} USD)%0A` +
+      `🖥️ *Alojamiento:* ${hostingText}%0A` +
+      `💰 *Desarrollo (Pago único):* $${totalDevPrice} USD%0A` +
+      `${hostingOption === 'vps-included' ? `🔄 *Alojamiento & Mantenimiento VPS:* $12 USD / mes%0A` : ''}` +
+      `⏱️ *Tiempo Estimado de Entrega:* ${selectedService.time}%0A%0A` +
+      `👤 *Nombre / Empresa:* ${clientName || 'No especificado'}%0A` +
+      `📝 *Notas del Proyecto:* ${clientProjectNote || 'Quiero más detalles.'}`;
+
+    window.open(`https://wa.me/593967097679?text=${msg}`, '_blank');
+  };
 
   const handleSubmitLead = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -504,22 +525,15 @@ export const QuotePage: React.FC = () => {
                       <span>{isSending ? 'Enviando a Telegram & Notion...' : 'Solicitar Esta Propuesta'}</span>
                     </button>
 
-                    {/* WhatsApp Notice Button */}
+                    {/* WhatsApp Action Button */}
                     <button
                       type="button"
-                      onClick={() => setShowWhatsappNotice(!showWhatsappNotice)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-300 border border-white/10 font-mono text-[11px] flex items-center justify-center gap-1.5 transition-all"
+                      onClick={handleSendToWhatsapp}
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#4ade80] border border-[#25D366]/40 font-bold text-xs flex items-center justify-center gap-2 transition-all"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
-                      <span>Canal de WhatsApp (Próximamente)</span>
+                      <span>Enviar Directo por WhatsApp</span>
                     </button>
-
-                    {showWhatsappNotice && (
-                      <div className="p-3 rounded-xl bg-rose-950/40 border border-rose-500/30 text-slate-300 text-[11px] flex items-start gap-2">
-                        <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                        <span>Estamos configurando la línea corporativa oficial. Por favor utiliza el botón superior de <strong>Solicitar Esta Propuesta</strong> para recibir respuesta inmediata.</span>
-                      </div>
-                    )}
                   </div>
                 </form>
               )}

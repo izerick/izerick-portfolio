@@ -3,6 +3,7 @@ import { BackgroundScrollCanvas } from './components/BackgroundScrollCanvas';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { PromoToast } from './components/PromoToast';
+import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectsPage } from './pages/ProjectsPage';
@@ -43,8 +44,11 @@ export function App() {
           <Footer />
         </div>
 
-        {/* Global Floating Promo Toast (Highest Stacking Layer z-[9999]) */}
+        {/* Global Floating Promo Toast (Bottom Left z-[9999]) */}
         <PromoToast />
+
+        {/* Global Floating WhatsApp Button (Bottom Right z-[9998]) */}
+        <FloatingWhatsAppButton />
 
       </div>
     </Router>
