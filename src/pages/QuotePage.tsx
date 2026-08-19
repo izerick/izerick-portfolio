@@ -77,13 +77,22 @@ const SERVICES: ServiceOption[] = [
     icon: Database,
   },
   {
-    id: 'bot-automation',
-    name: 'Bot de WhatsApp & Automatización',
-    category: 'Inteligencia & Leads',
-    price: 240,
-    time: '3-5 días',
-    desc: 'Respuestas automáticas, captura de clientes y conexión directa a Notion o Telegram.',
+    id: 'bot-auto',
+    name: 'Bot de WhatsApp Automatizado',
+    category: 'Menús & Flujos Rápidos',
+    price: 120,
+    time: '2-3 días',
+    desc: 'Menú interactivo con botones de opciones, respuestas a preguntas frecuentes, captura de prospectos y alertas instantáneas a Telegram.',
     icon: Bot,
+  },
+  {
+    id: 'bot-ia',
+    name: 'Asistente Virtual con IA 24/7',
+    category: 'Inteligencia Artificial (ChatGPT)',
+    price: 220,
+    time: '4-6 días',
+    desc: 'Vendedor virtual con IA entrenado con tu catálogo, precios y políticas. Atiende de forma fluida y natural como un humano las 24 horas.',
+    icon: Sparkles,
   },
 ];
 

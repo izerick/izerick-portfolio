@@ -117,6 +117,18 @@ export const PORTFOLIO_DATA = {
       title: 'Sistemas & Paneles Administrativos',
       description: 'Herramientas a medida para digitalizar registros, historiales, clientes o facturación interna de negocios físicos o consultorios.',
       deliverables: ['Base de datos en la nube', 'Autenticación con usuario y clave', 'Historial y reportes']
+    },
+    {
+      id: 'bot-auto',
+      title: 'Bots de WhatsApp Automatizados ($120 USD)',
+      description: 'Automatización con menús interactivos y botones de opciones. Responde dudas frecuentes y captura el contacto del cliente hacia tu Telegram o Notion.',
+      deliverables: ['Menús interactivos con botones', 'Captura automática de prospectos', 'Alertas instantáneas a celular']
+    },
+    {
+      id: 'bot-ia',
+      title: 'Asistentes Virtuales con IA 24/7 ($220 USD)',
+      description: 'Vendedor inteligente con Inteligencia Artificial (ChatGPT) entrenado con tu catálogo para atender, resolver dudas complejas y cerrar ventas de forma natural.',
+      deliverables: ['IA conversacional con ChatGPT', 'Entrenado con tu catálogo y precios', 'Atención humana fluida las 24 horas']
     }
   ] as ServiceItem[],
 
