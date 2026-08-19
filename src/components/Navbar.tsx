@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Github, 
   Calculator, 
   Menu, 
   X, 
@@ -107,16 +106,6 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href={PORTFOLIO_DATA.personalInfo.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-xl bg-[#140b0f] border border-rose-900/40 text-slate-300 hover:text-white hover:border-rose-500/50 transition-colors"
-            title="GitHub @izerick"
-          >
-            <Github className="w-4 h-4" />
-          </a>
-
           {/* Highlighted Cotizar Ahora Button Desktop */}
           <Link
             to="/cotizar"
@@ -124,7 +113,7 @@ export const Navbar: React.FC = () => {
           >
             <Calculator className="w-3.5 h-3.5 text-rose-200 group-hover:rotate-12 transition-transform" />
             <span>Cotizar Ahora</span>
-            <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
 
@@ -204,17 +193,15 @@ export const Navbar: React.FC = () => {
                   className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-mono text-[11px]"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
+                  <span>WhatsApp Directo</span>
                 </a>
                 <span className="text-slate-600">•</span>
                 <a
-                  href={PORTFOLIO_DATA.personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`mailto:${PORTFOLIO_DATA.personalInfo.email}`}
                   className="flex items-center gap-1.5 text-slate-300 hover:text-white font-mono text-[11px]"
                 >
-                  <Github className="w-3.5 h-3.5" />
-                  <span>GitHub</span>
+                  <Mail className="w-3.5 h-3.5 text-rose-400" />
+                  <span>{PORTFOLIO_DATA.personalInfo.email}</span>
                 </a>
               </div>
 

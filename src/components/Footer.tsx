@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Mail } from 'lucide-react';
+import { MessageCircle, Mail } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
@@ -15,19 +15,19 @@ export const Footer: React.FC = () => {
 
         <div className="flex items-center gap-6">
           <a
-            href={PORTFOLIO_DATA.personalInfo.github}
+            href={`https://wa.me/${PORTFOLIO_DATA.personalInfo.whatsappRaw}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-rose-400 transition-colors flex items-center gap-1"
+            className="hover:text-emerald-400 text-slate-400 transition-colors flex items-center gap-1.5"
           >
-            <Github className="w-3.5 h-3.5" />
-            <span>GitHub</span>
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+            <span>WhatsApp Directo</span>
           </a>
           <a
             href={`mailto:${PORTFOLIO_DATA.personalInfo.email}`}
-            className="hover:text-rose-400 transition-colors flex items-center gap-1"
+            className="hover:text-rose-400 transition-colors flex items-center gap-1.5"
           >
-            <Mail className="w-3.5 h-3.5" />
+            <Mail className="w-3.5 h-3.5 text-rose-400" />
             <span>{PORTFOLIO_DATA.personalInfo.email}</span>
           </a>
         </div>

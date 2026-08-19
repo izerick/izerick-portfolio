@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Github, ArrowUpRight, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Calculator, ArrowUpRight, MapPin, Sparkles, MessageSquare } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export const ContactSection: React.FC = () => {
@@ -135,23 +135,21 @@ export const ContactSection: React.FC = () => {
                 <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-rose-400 transition-colors" />
               </a>
 
-              {/* GitHub Profile */}
+              {/* Cotizador Direct Link */}
               <a
-                href={PORTFOLIO_DATA.personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/cotizar"
                 className="p-4 sm:p-5 rounded-2xl bg-[#140b0f]/90 border border-rose-900/40 hover:border-rose-500/50 transition-all flex items-center justify-between group shadow-lg"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                    <Github className="w-5 h-5" />
+                    <Calculator className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs font-bold text-white font-heading block group-hover:text-rose-300 transition-colors">
-                      GitHub Oficial
+                      Cotizador Interactivo
                     </span>
                     <span className="text-[11px] font-mono text-slate-300">
-                      github.com/izerick
+                      izerick.dev/cotizar
                     </span>
                   </div>
                 </div>
