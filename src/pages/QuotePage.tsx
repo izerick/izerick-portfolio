@@ -188,11 +188,22 @@ export const QuotePage: React.FC = () => {
         .join(', ');
 
       const hostingText = hostingOption === 'vps-included' ? 'VPS Gestionado ($12 USD / mes)' : 'Hosting Propio ($0)';
+      const advance50 = Math.round(totalDevPrice / 2);
+      const delivery50 = totalDevPrice - advance50;
 
       const payload = {
         name: clientName,
         contact: clientContact,
-        service: `COTIZADOR: ${selectedService.name} ($${totalDevPrice} USD)`,
+        service: `COTIZADOR: ${selectedService.name}`,
+        totalDev: `$${totalDevPrice} USD`,
+        advancePayment: `$${advance50} USD (50%)`,
+        deliveryPayment: `$${delivery50} USD (50%)`,
+        monthlyFee: hostingOption === 'vps-included' ? '$12 USD / mes' : '$0 USD / mes (Hosting Propio)',
+        estimatedTime: selectedService.time,
+        serviceBase: `${selectedService.name} ($${selectedService.price} USD)`,
+        extras: extrasNames || 'Ninguno',
+        hosting: hostingText,
+        notes: clientProjectNote || 'Sin notas adicionales',
         message: `📋 RESUMEN DE COTIZACIÓN:\n• Servicio: ${selectedService.name} ($${selectedService.price} USD)\n• Extras: ${extrasNames || 'Ninguno'} (+$${extrasTotal} USD)\n• Servidor: ${hostingText}\n• Inversión Desarrollo: $${totalDevPrice} USD\n• Entrega Estimada: ${selectedService.time}\n• Detalles del Cliente: ${clientProjectNote || 'Sin notas adicionales'}`,
       };
 

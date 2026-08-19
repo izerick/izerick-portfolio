@@ -14,7 +14,8 @@ const NT_DB = process.env.NOTION_DATABASE_ID || d('M2JmYzRjNzktYTVjMi04MTRhLTlmY
 
 // Escape HTML characters for Telegram
 function escapeHtml(text: string) {
-  return text
+  if (!text) return '';
+  return String(text)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
@@ -39,18 +40,53 @@ export default async function handler(req: any, res: any) {
     const name = data.name || 'Nuevo Contacto';
     const contact = data.contact || 'Sin contacto';
     const service = data.service || 'Consulta General';
+    const totalDev = data.totalDev || '';
+    const advancePayment = data.advancePayment || '';
+    const deliveryPayment = data.deliveryPayment || '';
+    const monthlyFee = data.monthlyFee || '';
+    const estimatedTime = data.estimatedTime || '';
+    const serviceBase = data.serviceBase || '';
+    const extras = data.extras || '';
+    const hosting = data.hosting || '';
+    const notes = data.notes || data.message || '';
     const message = (data.message || 'Sin mensaje').replace(/%0A/g, '\n');
     const nowStr = new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' });
     const dateIso = new Date().toISOString().split('T')[0];
 
-    // 1. Dispatch to Telegram using HTML format (immune to Markdown parse errors)
-    const tgText = `<b>🔔 ¡Nuevo Lead en izerick.dev!</b>\n\n` +
-      `<b>👤 Nombre:</b> ${escapeHtml(name)}\n` +
-      `<b>📬 Contacto:</b> ${escapeHtml(contact)}\n` +
-      `<b>💼 Servicio:</b> ${escapeHtml(service)}\n` +
-      `<b>📝 Detalles:</b>\n${escapeHtml(message)}\n\n` +
-      `<i>📅 Fecha: ${nowStr}</i>`;
+    // Build Executive Invoice Telegram Message
+    let tgText = `<b>🧾 PROPUESTA / COTIZACIÓN COMERCIAL</b>\n`;
+    tgText += `<i>izerick.dev • Notificación Oficial</i>\n\n`;
+    tgText += `<b>👤 Cliente:</b> ${escapeHtml(name)}\n`;
+    tgText += `<b>📬 Contacto:</b> ${escapeHtml(contact)}\n`;
+    tgText += `<b>💼 Servicio:</b> ${escapeHtml(service)}\n\n`;
 
+    if (totalDev) {
+      tgText += `━━━━━━━━━━━━━━━━━━━━━\n`;
+      tgText += `<b>💰 TOTAL FACTURA DESARROLLO: ${escapeHtml(totalDev)}</b>\n`;
+      if (advancePayment && deliveryPayment) {
+        tgText += `  • <b>Anticipo (50%):</b> ${escapeHtml(advancePayment)}\n`;
+        tgText += `  • <b>Contra Entrega (50%):</b> ${escapeHtml(deliveryPayment)}\n`;
+      }
+      if (monthlyFee) {
+        tgText += `<b>🔄 Mensualidad Servidor & Dominio:</b> ${escapeHtml(monthlyFee)}\n`;
+      }
+      if (estimatedTime) {
+        tgText += `<b>⏱️ Tiempo Estimado de Entrega:</b> ${escapeHtml(estimatedTime)}\n`;
+      }
+      tgText += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+      tgText += `<b>📦 Desglose del Paquete:</b>\n`;
+      if (serviceBase) tgText += `  • <b>Base:</b> ${escapeHtml(serviceBase)}\n`;
+      if (extras) tgText += `  • <b>Extras:</b> ${escapeHtml(extras)}\n`;
+      if (hosting) tgText += `  • <b>Alojamiento:</b> ${escapeHtml(hosting)}\n`;
+      if (notes) tgText += `  • <b>Notas del Cliente:</b> ${escapeHtml(notes)}\n\n`;
+    } else {
+      tgText += `<b>📝 Mensaje:</b>\n${escapeHtml(message)}\n\n`;
+    }
+
+    tgText += `<i>📅 Fecha: ${nowStr}</i>`;
+
+    // 1. Dispatch to Telegram
     try {
       const tgRes = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
         method: 'POST',
