@@ -4,18 +4,11 @@ import {
   ExternalLink, 
   ArrowRight, 
   Check,
-  ShieldCheck, 
-  Smartphone, 
-  Globe,
-  Bot,
   Sparkles,
   Zap,
   Eye,
   MessageCircle,
-  X,
-  Utensils,
-  Building2,
-  SlidersHorizontal
+  X
 } from 'lucide-react';
 import { FAQSection } from '../components/FAQSection';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
