@@ -12,7 +12,7 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
   url,
   title,
   badgeText = 'En Línea • Vercel Edge',
-  heightClass = 'h-[280px] sm:h-[340px] md:h-[380px]',
+  heightClass = 'h-[220px] sm:h-[250px]',
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [iframeKey, setIframeKey] = useState(0);
@@ -22,7 +22,7 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
   return (
     <div className="rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(244,63,94,0.15)] group transition-all relative">
       {/* Browser Window Titlebar */}
-      <div className="bg-[#14070f] px-3.5 py-2.5 border-b border-rose-950/80 flex items-center justify-between gap-3 text-xs font-mono">
+      <div className="bg-[#14070f] px-3.5 py-2 border-b border-rose-950/80 flex items-center justify-between gap-3 text-xs font-mono">
         {/* macOS Window Dots */}
         <div className="flex items-center gap-1.5 shrink-0">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
@@ -31,7 +31,7 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
         </div>
 
         {/* Address Bar */}
-        <div className="flex-1 max-w-sm mx-auto bg-[#0a0308] border border-rose-950/70 rounded-lg px-3 py-1 flex items-center justify-between gap-2 text-[11px] text-slate-300">
+        <div className="flex-1 max-w-xs mx-auto bg-[#0a0308] border border-rose-950/70 rounded-lg px-2.5 py-0.5 flex items-center justify-between gap-2 text-[10px] text-slate-300">
           <div className="flex items-center gap-1.5 truncate">
             <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
             <span className="truncate text-slate-300">{cleanDisplayUrl}</span>
@@ -50,7 +50,7 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
 
         {/* Status & Open Action */}
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30 hidden sm:inline-flex items-center gap-1.5">
+          <span className="text-[9px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30 hidden sm:inline-flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             {badgeText}
           </span>
@@ -69,20 +69,20 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
       {/* Live Viewport */}
       <div className={`relative w-full ${heightClass} bg-[#070306] overflow-hidden`}>
         {isLoading && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#070306]/90 backdrop-blur-sm gap-2.5 text-rose-300 font-mono text-xs">
-            <div className="w-6 h-6 border-2 border-rose-500 border-t-transparent rounded-full animate-spin" />
-            <span>Cargando vista previa en tiempo real...</span>
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#070306]/90 backdrop-blur-sm gap-2 text-rose-300 font-mono text-xs">
+            <div className="w-5 h-5 border-2 border-rose-500 border-t-transparent rounded-full animate-spin" />
+            <span className="text-[11px]">Cargando vista previa en tiempo real...</span>
           </div>
         )}
 
-        {/* Scaled Real-Time Embedded App */}
+        {/* High-DPI Scaled Real-Time Embedded App */}
         <div className="w-full h-full overflow-hidden relative">
           <iframe
             key={iframeKey}
             src={url}
             title={title}
             onLoad={() => setIsLoading(false)}
-            className="w-[133.33%] h-[133.33%] origin-top-left scale-[0.75] border-0"
+            className="w-[180%] h-[180%] origin-top-left scale-[0.555] border-0"
             loading="lazy"
             sandbox="allow-scripts allow-same-origin allow-forms"
           />

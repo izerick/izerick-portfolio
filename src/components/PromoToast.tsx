@@ -8,8 +8,8 @@ export const PromoToast: React.FC = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const location = useLocation();
 
-  // Hide toast and tab completely on landing-page and cotizar routes
-  const isHiddenRoute = location.pathname === '/landing-page' || location.pathname === '/cotizar';
+  // Hide toast and tab completely on landing-page, cotizar, and proyectos routes
+  const isHiddenRoute = location.pathname === '/landing-page' || location.pathname === '/cotizar' || location.pathname === '/proyectos';
 
   useEffect(() => {
     if (isHiddenRoute) return;

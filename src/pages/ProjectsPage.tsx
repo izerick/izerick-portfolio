@@ -187,32 +187,32 @@ export const ProjectsPage: React.FC = () => {
         </div>
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs font-mono font-bold uppercase tracking-wider mb-4 shadow-[0_0_20px_rgba(244,63,94,0.25)]">
-            <FolderGit2 className="w-4 h-4 text-rose-400" />
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs font-mono font-bold uppercase tracking-wider mb-3 shadow-[0_0_15px_rgba(244,63,94,0.2)]">
+            <FolderGit2 className="w-3.5 h-3.5 text-rose-400" />
             <span>Casos de Éxito &amp; Software en Producción</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white font-heading tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white font-heading tracking-tight leading-tight">
             Proyectos de <span className="crimson-gradient-text">Ingeniería &amp; Software</span>
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
-            Explora las plataformas web, sistemas clínicos y herramientas de comercio electrónico que he diseñado y desplegado en infraestructura cloud moderna.
+          <p className="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed max-w-2xl mx-auto">
+            Plataformas web, sistemas clínicos y herramientas de comercio electrónico desarrolladas a medida bajo arquitectura cloud moderna.
           </p>
         </div>
 
         {/* Category Filters Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-14">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                   isActive
-                    ? 'bg-rose-600 text-white shadow-[0_0_20px_rgba(244,63,94,0.5)] ring-1 ring-rose-300'
+                    ? 'bg-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)] ring-1 ring-rose-300'
                     : 'bg-[#120710]/90 text-slate-400 hover:text-white border border-rose-950/80 hover:border-rose-700/50'
                 }`}
               >
@@ -227,230 +227,220 @@ export const ProjectsPage: React.FC = () => {
           })}
         </div>
 
-        {/* Projects Showcase Grid */}
-        <div className="space-y-14 mb-24">
+        {/* Proportional 2-Column Projects Showcase Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 mb-20">
           {filteredProjects.map((proj) => (
             <div
               key={proj.id}
-              className="tech-card rounded-3xl p-6 sm:p-9 bg-[#10070e]/95 border-2 border-rose-950/80 hover:border-rose-500/40 transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+              className="tech-card rounded-3xl p-5 sm:p-6 bg-[#10070e]/95 border-2 border-rose-950/80 hover:border-rose-500/40 transition-all flex flex-col justify-between text-left group"
             >
               
-              {/* Left Column: Interactive Cyber Mockup / Real Time Live Sandbox */}
-              <div className="lg:col-span-7">
-                
-                {/* Case 1: Live Real-Time Web Preview (Ópticas Visual Store) */}
-                {proj.liveUrl && (
-                  <LiveBrowserPreview
-                    url={proj.liveUrl}
-                    title={proj.title}
-                    badgeText="En Línea • Vercel Edge"
-                  />
-                )}
+              <div className="space-y-4">
+                {/* Visual Preview / Real Time Sandbox */}
+                <div className="w-full">
+                  {/* Case 1: Live Real-Time Web Preview (Ópticas Visual Store) */}
+                  {proj.liveUrl && (
+                    <LiveBrowserPreview
+                      url={proj.liveUrl}
+                      title={proj.title}
+                      badgeText="En Línea • Vercel Edge"
+                      heightClass="h-[180px] sm:h-[210px]"
+                    />
+                  )}
 
-                {/* Case 2: Tienda de Ropa (Mobile TikTok E-Commerce Mockup) */}
-                {proj.type === 'ecommerce' && !proj.liveUrl && (
-                  <div className="max-w-md mx-auto rounded-3xl bg-[#090407] border-2 border-rose-500/30 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(244,63,94,0.15)]">
-                    <div className="bg-[#14070f] px-5 py-3 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
-                      <div className="flex items-center gap-2">
-                        <Smartphone className="w-3.5 h-3.5 text-rose-400" />
-                        <span className="text-white font-bold">Catálogo Móvil TikTok</span>
+                  {/* Case 2: Tienda de Ropa (Mobile TikTok E-Commerce Mockup) */}
+                  {proj.type === 'ecommerce' && !proj.liveUrl && (
+                    <div className="w-full rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-lg">
+                      <div className="bg-[#14070f] px-4 py-2 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
+                        <div className="flex items-center gap-1.5">
+                          <Smartphone className="w-3.5 h-3.5 text-rose-400" />
+                          <span className="text-white font-bold text-xs">Catálogo TikTok PWA</span>
+                        </div>
+                        <span className="text-[9px] text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-500/30">
+                          Mayor / Menor
+                        </span>
                       </div>
-                      <span className="text-[10px] text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-500/30">
-                        Venta Mayor / Menor
-                      </span>
-                    </div>
 
-                    <div className="p-5 space-y-3.5 text-left">
-                      <div className="flex items-center justify-between">
+                      <div className="p-4 space-y-2.5 text-left h-[180px] sm:h-[210px] flex flex-col justify-between">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="text-[9px] font-mono text-amber-400 font-bold uppercase">🔥 Tendencia Viral</span>
+                            <h4 className="text-xs font-bold text-white">Hoodie Streetwear Oversize</h4>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-xs font-mono font-black text-rose-400">$25 USD</span>
+                            <span className="text-[9px] text-slate-400 block font-mono">x Mayor: $18</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5">
+                          {['S', 'M', 'L', 'XL'].map((size, sIdx) => (
+                            <span
+                              key={size}
+                              className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-[11px] font-bold ${
+                                sIdx === 1
+                                  ? 'bg-rose-600 text-white shadow-sm ring-1 ring-rose-300'
+                                  : 'bg-white/5 text-slate-400 border border-white/5'
+                              }`}
+                            >
+                              {size}
+                            </span>
+                          ))}
+                          <span className="text-[10px] text-emerald-400 font-mono ml-auto">Stock: 24 disp.</span>
+                        </div>
+
+                        <div className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-950/60 to-emerald-900/30 border border-emerald-500/30 flex items-center justify-between text-[11px] text-emerald-300 font-bold">
+                          <span>⚡ Pedido Directo a WhatsApp</span>
+                          <span>0 Fricción</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Case 3: HBW Risk Solutions (Corporate Industrial Safety Mockup) */}
+                  {proj.type === 'corporate' && (
+                    <div className="w-full rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-lg">
+                      <div className="bg-[#14070f] px-4 py-2 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
+                        <div className="flex items-center gap-1.5">
+                          <ShieldCheck className="w-3.5 h-3.5 text-rose-400" />
+                          <span className="text-white font-bold text-xs">HBW Risk Solutions</span>
+                        </div>
+                        <span className="text-[9px] text-amber-300 font-bold bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/30">
+                          ISO 45001
+                        </span>
+                      </div>
+
+                      <div className="p-4 space-y-2.5 text-left h-[180px] sm:h-[210px] flex flex-col justify-between">
                         <div>
-                          <span className="text-[10px] font-mono text-amber-400 font-bold uppercase">🔥 Tendencia Viral</span>
-                          <h4 className="text-sm font-bold text-white">Hoodie Oversize Streetwear</h4>
+                          <h4 className="text-xs font-bold text-white">Consultoría de Seguridad Industrial</h4>
+                          <p className="text-[10px] text-slate-400 mt-1">Estructuración de matrices de riesgos laborales y auditorías SART.</p>
                         </div>
-                        <div className="text-right">
-                          <span className="text-sm font-mono font-black text-rose-400">$25 USD</span>
-                          <span className="text-[10px] text-slate-400 block font-mono">x Mayor: $18</span>
-                        </div>
-                      </div>
 
-                      <div className="flex items-center gap-2">
-                        {['S', 'M', 'L', 'XL'].map((size, sIdx) => (
-                          <span
-                            key={size}
-                            className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold ${
-                              sIdx === 1
-                                ? 'bg-rose-600 text-white shadow-sm ring-1 ring-rose-300'
-                                : 'bg-white/5 text-slate-400 border border-white/5'
-                            }`}
-                          >
-                            {size}
-                          </span>
-                        ))}
-                        <span className="text-[11px] text-emerald-400 font-mono ml-auto">Stock: 24 disp.</span>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-gradient-to-r from-emerald-950/60 to-emerald-900/30 border border-emerald-500/30 flex items-center justify-between text-xs text-emerald-300 font-bold">
-                        <span>⚡ Pedido Directo a WhatsApp</span>
-                        <span>0 Clics Inútiles</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Case 3: HBW Risk Solutions (Corporate Industrial Safety Mockup) */}
-                {proj.type === 'corporate' && (
-                  <div className="rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(244,63,94,0.15)]">
-                    <div className="bg-[#14070f] px-4 py-3 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
-                      <div className="flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-rose-400" />
-                        <span className="text-white font-bold">HBW Risk Solutions</span>
-                      </div>
-                      <span className="text-[10px] text-amber-300 font-bold bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/30">
-                        ISO 45001 • AUDITORÍAS
-                      </span>
-                    </div>
-
-                    <div className="p-5 space-y-3.5 text-left">
-                      <div>
-                        <h4 className="text-sm font-bold text-white">Consultoría de Seguridad Industrial &amp; Salud Laboral</h4>
-                        <p className="text-[11px] text-slate-400 mt-1">Estructuración de matrices de riesgos laborales, mediciones físicas y planes de emergencia.</p>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3 text-xs">
-                        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                          <span className="text-rose-400 font-bold block text-[10px] font-mono">MATRICES IPER:</span>
-                          <span className="text-slate-300 text-[11px]">Identificación de Peligros y Evaluación de Riesgos</span>
-                        </div>
-                        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                          <span className="text-rose-400 font-bold block text-[10px] font-mono">MEDICIONES:</span>
-                          <span className="text-slate-300 text-[11px]">Ruido, Iluminación y Ergonomía</span>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div className="p-2 rounded-xl bg-white/[0.02] border border-white/5">
+                            <span className="text-rose-400 font-bold block text-[9px] font-mono">MATRIZ IPER:</span>
+                            <span className="text-slate-300 text-[10px]">Evaluación de Riesgos</span>
+                          </div>
+                          <div className="p-2 rounded-xl bg-white/[0.02] border border-white/5">
+                            <span className="text-rose-400 font-bold block text-[9px] font-mono">ALERTAS:</span>
+                            <span className="text-slate-300 text-[10px]">Directo a Telegram</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Case 4: Bot IA WhatsApp (AI Chat Sandbox Mockup) */}
-                {proj.type === 'bot' && (
-                  <div className="max-w-md mx-auto rounded-3xl bg-[#090407] border-2 border-rose-500/30 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(244,63,94,0.15)]">
-                    <div className="bg-[#14070f] px-4 py-3 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
-                      <div className="flex items-center gap-2">
-                        <Bot className="w-4 h-4 text-rose-400" />
-                        <span className="text-white font-bold">Asistente IA WhatsApp</span>
+                  {/* Case 4: Bot IA WhatsApp (AI Chat Sandbox Mockup) */}
+                  {proj.type === 'bot' && (
+                    <div className="w-full rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-lg">
+                      <div className="bg-[#14070f] px-4 py-2 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
+                        <div className="flex items-center gap-1.5">
+                          <Bot className="w-3.5 h-3.5 text-rose-400" />
+                          <span className="text-white font-bold text-xs">Asistente IA WhatsApp</span>
+                        </div>
+                        <span className="text-[9px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          CHATGPT 24/7
+                        </span>
                       </div>
-                      <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        CHATGPT 24/7
-                      </span>
+
+                      <div className="p-3.5 space-y-2 text-left font-sans text-xs h-[180px] sm:h-[210px] flex flex-col justify-between">
+                        <div className="bg-[#160a12] p-2.5 rounded-xl rounded-tl-sm text-slate-300 border border-rose-950/80 max-w-[85%] text-[10px]">
+                          <p>¡Hola! ¿Tienen disponible el paquete de Landing Page por $35 al mes?</p>
+                        </div>
+                        <div className="bg-gradient-to-r from-rose-900/60 to-red-900/40 p-2.5 rounded-xl rounded-tr-sm text-white border border-rose-500/30 ml-auto max-w-[90%] text-[10px]">
+                          <p>¡Hola! 👋 Sí, está disponible con dominio .com y hosting 24/7.</p>
+                        </div>
+                        <div className="p-1.5 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between text-[9px] font-mono text-emerald-400">
+                          <span>⚡ Lead en Notion CRM</span>
+                          <span>Respuesta: 1.2s</span>
+                        </div>
+                      </div>
                     </div>
+                  )}
+                </div>
 
-                    <div className="p-4 space-y-3 text-left font-sans text-xs">
-                      <div className="bg-[#160a12] p-3 rounded-2xl rounded-tl-sm text-slate-300 border border-rose-950/80 max-w-[85%]">
-                        <p className="text-[11px]">¡Hola! ¿Tienen disponible el paquete de Landing Page por $35 al mes?</p>
-                      </div>
-                      <div className="bg-gradient-to-r from-rose-900/60 to-red-900/40 p-3 rounded-2xl rounded-tr-sm text-white border border-rose-500/30 ml-auto max-w-[90%]">
-                        <p className="text-[11px]">¡Hola! 👋 Sí, está disponible. Incluye diseño en 1 página, dominio .com y hosting 24/7. ¿Para qué tipo de negocio te gustaría armarla?</p>
-                      </div>
-                      <div className="p-2 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between text-[10px] font-mono text-emerald-400">
-                        <span>⚡ Lead guardado en Notion CRM</span>
-                        <span>Respuesta: 1.4s</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-              </div>
-
-              {/* Right Column: Case Study Spec & Description */}
-              <div className="lg:col-span-5 space-y-5 text-left">
+                {/* Card Header Info */}
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-500/30 uppercase">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-500/30 uppercase">
                       {proj.categoryLabel}
                     </span>
-                    <span className="text-xs font-mono text-emerald-400 font-semibold">
+                    <span className="text-[10px] font-mono text-emerald-400 font-semibold">
                       {proj.status}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-extrabold text-white font-heading leading-tight">
+                  <h3 className="text-lg sm:text-xl font-bold text-white font-heading leading-snug">
                     {proj.title}
                   </h3>
-                  <p className="text-xs text-rose-300/90 font-mono mt-1">
-                    {proj.industry} • {proj.clientLocation}
+                  <p className="text-[11px] text-rose-300/80 font-mono mt-0.5">
+                    {proj.industry}
                   </p>
                 </div>
 
-                {/* Key Metrics Banner */}
-                <div className="grid grid-cols-3 gap-2 py-2 border-y border-white/5">
+                {/* 3 Metrics Pills */}
+                <div className="grid grid-cols-3 gap-1.5 py-1.5 border-y border-white/5">
                   {proj.metrics.map((m, mIdx) => {
                     const MIcon = m.icon;
                     return (
-                      <div key={mIdx} className="text-center p-2 rounded-xl bg-white/[0.02] border border-white/5">
-                        <MIcon className="w-3.5 h-3.5 text-rose-400 mx-auto mb-1" />
-                        <span className="font-heading font-extrabold text-white text-xs block">{m.value}</span>
-                        <span className="text-[9px] font-mono text-slate-400 block">{m.label}</span>
+                      <div key={mIdx} className="text-center p-1.5 rounded-lg bg-white/[0.02] border border-white/5">
+                        <MIcon className="w-3 h-3 text-rose-400 mx-auto mb-0.5" />
+                        <span className="font-heading font-extrabold text-white text-[11px] block">{m.value}</span>
+                        <span className="text-[8px] font-mono text-slate-400 block">{m.label}</span>
                       </div>
                     );
                   })}
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                {/* Description */}
+                <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">
                   {proj.description}
                 </p>
 
-                {/* Highlights List */}
-                <div className="space-y-1.5">
-                  {proj.highlights.slice(0, 3).map((h, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2 text-xs text-slate-300">
-                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                      <span className="leading-snug">{h}</span>
-                    </div>
-                  ))}
-                </div>
-
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {proj.tags.map((t, tIdx) => (
+                <div className="flex flex-wrap gap-1">
+                  {proj.tags.slice(0, 4).map((t, tIdx) => (
                     <span
                       key={tIdx}
-                      className="px-2 py-0.5 rounded bg-black/40 border border-rose-950 text-[10px] font-mono text-slate-400"
+                      className="px-2 py-0.5 rounded bg-black/40 border border-rose-950 text-[9px] font-mono text-slate-400"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
 
-                {/* Actions */}
-                <div className="pt-4 border-t border-rose-950/80 flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={() => setSelectedProject(proj)}
-                    className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center gap-1.5 transition-all border border-white/10 cursor-pointer"
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-3.5 mt-4 border-t border-rose-950/80 flex items-center justify-between gap-2">
+                <button
+                  onClick={() => setSelectedProject(proj)}
+                  className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center gap-1.5 transition-all border border-white/10 cursor-pointer"
+                >
+                  <Eye className="w-3.5 h-3.5 text-rose-300" />
+                  <span>Ver Detalles</span>
+                </button>
+
+                {proj.liveUrl ? (
+                  <a
+                    href={proj.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-[0_0_15px_rgba(244,63,94,0.35)] transition-all"
                   >
-                    <Eye className="w-3.5 h-3.5 text-rose-300" />
-                    <span>Ver Caso de Estudio</span>
-                  </button>
-
-                  {proj.liveUrl ? (
-                    <a
-                      href={proj.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all"
-                    >
-                      <span>Web en Vivo</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  ) : (
-                    <Link
-                      to="/cotizar"
-                      className="px-4 py-2.5 rounded-xl bg-rose-950/70 hover:bg-rose-900/80 text-rose-200 border border-rose-500/30 font-bold text-xs flex items-center gap-1.5 transition-colors"
-                    >
-                      <span>Cotizar Similar</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  )}
-                </div>
-
+                    <span>Web en Vivo</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                ) : (
+                  <Link
+                    to="/cotizar"
+                    className="px-3.5 py-2 rounded-xl bg-rose-950/70 hover:bg-rose-900/80 text-rose-200 border border-rose-500/30 font-bold text-xs flex items-center gap-1.5 transition-colors"
+                  >
+                    <span>Cotizar</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                )}
               </div>
 
             </div>
