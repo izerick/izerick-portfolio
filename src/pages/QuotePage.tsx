@@ -19,6 +19,8 @@ import {
   Server
 } from 'lucide-react';
 import { FAQSection } from '../components/FAQSection';
+import { InteractiveCyberBackground, BackgroundVariant } from '../components/InteractiveCyberBackground';
+import { BackgroundDemoToolbar } from '../components/BackgroundDemoToolbar';
 
 interface ServiceOption {
   id: string;
@@ -276,9 +278,17 @@ export const QuotePage: React.FC = () => {
     }
   };
 
+  const [bgVariant, setBgVariant] = useState<BackgroundVariant>('circuits');
+
   return (
     <div className="pt-24 pb-20 min-h-screen bg-[#070408] relative overflow-hidden">
       
+      {/* Dynamic Interactive Background (Sin rostro, 100% Ingeniería) */}
+      <InteractiveCyberBackground variant={bgVariant} />
+
+      {/* Floating Visual Atmosphere Switcher */}
+      <BackgroundDemoToolbar currentVariant={bgVariant} onVariantChange={setBgVariant} />
+
       {/* Background Glows */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-rose-600/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />

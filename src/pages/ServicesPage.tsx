@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { FAQSection } from '../components/FAQSection';
+import { InteractiveCyberBackground, BackgroundVariant } from '../components/InteractiveCyberBackground';
+import { BackgroundDemoToolbar } from '../components/BackgroundDemoToolbar';
 
 interface ServiceCardData {
   id: string;
@@ -198,13 +200,21 @@ const WORK_PROCESS = [
 ];
 
 export const ServicesPage: React.FC = () => {
+  const [bgVariant, setBgVariant] = React.useState<BackgroundVariant>('grid3d');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-[#070408] relative overflow-hidden">
+    <div className="pt-24 pb-20 min-h-screen bg-[#070408] relative overflow-hidden text-left">
       
+      {/* Dynamic Interactive Background (Sin rostro, 100% Ingeniería) */}
+      <InteractiveCyberBackground variant={bgVariant} />
+
+      {/* Floating Visual Atmosphere Switcher */}
+      <BackgroundDemoToolbar currentVariant={bgVariant} onVariantChange={setBgVariant} />
+
       {/* Ambient Glows */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-rose-600/15 rounded-full blur-[160px] pointer-events-none" />
 
