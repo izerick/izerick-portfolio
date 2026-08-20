@@ -11,8 +11,6 @@ import {
   Bot,
   Sparkles,
   Zap,
-  Layers,
-  ShoppingBag,
   Database,
   Eye,
   MessageCircle,
