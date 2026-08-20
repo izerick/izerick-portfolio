@@ -26,6 +26,7 @@ interface ProjectItemData {
   status: string;
   accentColor: string;
   previewType: 'optical' | 'ecommerce' | 'corporate' | 'bot' | 'restaurant' | 'realestate';
+  image?: string;
   liveUrl?: string;
   description: string;
   challenge: string;
@@ -47,6 +48,7 @@ const PROJECTS_DATA: ProjectItemData[] = [
     status: '🟢 En Producción',
     accentColor: 'from-cyan-900/30 via-blue-950/40 to-purple-950/30 border-cyan-500/30 text-cyan-400',
     previewType: 'optical',
+    image: '/optica-preview.png',
     liveUrl: 'https://optica.izerick.dev',
     description: 'Plataforma web médica para consultorios ópticos. Integra fichas clínicas con refracción computarizada (OD/OI), panel de facturación desglosada de lunas y armazones, y agenda médica.',
     challenge: 'El centro óptico registraba historiales y valores de lunas en papel físico, causando pérdida de recetas, retrasos en la atención y descontrol contable.',
@@ -468,9 +470,18 @@ export const ProjectsPage: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* High-Fidelity Visual Interface Simulation */}
-                  <div className="relative h-[155px] overflow-hidden">
-                    <ProjectMockupPreview type={proj.previewType} />
+                  {/* High-Fidelity Visual Interface or Captured Screenshot (Vercel Style) */}
+                  <div className="relative h-[155px] overflow-hidden bg-[#070308]">
+                    {proj.image ? (
+                      <img
+                        src={proj.image}
+                        alt={proj.name}
+                        className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <ProjectMockupPreview type={proj.previewType} />
+                    )}
                     
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-rose-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
@@ -635,9 +646,19 @@ export const ProjectsPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Visual Modal Mockup Preview */}
-            <div className="rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-lg h-[160px]">
-              <ProjectMockupPreview type={selectedProject.previewType} />
+            {/* Visual Modal Mockup or Real Screenshot */}
+            <div className="rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-lg">
+              {selectedProject.image ? (
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.name}
+                  className="w-full h-auto max-h-[260px] object-cover object-top"
+                />
+              ) : (
+                <div className="h-[160px]">
+                  <ProjectMockupPreview type={selectedProject.previewType} />
+                </div>
+              )}
             </div>
 
             {/* Metrics */}
