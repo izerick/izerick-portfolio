@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ContactSection } from '../components/ContactSection';
-import { InteractiveCyberBackground, BackgroundVariant } from '../components/InteractiveCyberBackground';
-import { BackgroundDemoToolbar } from '../components/BackgroundDemoToolbar';
+import { InteractiveCyberBackground } from '../components/InteractiveCyberBackground';
 
 export const ContactPage: React.FC = () => {
-  const [bgVariant, setBgVariant] = useState<BackgroundVariant>('neural');
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -14,11 +11,8 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="pt-20 min-h-screen bg-[#070408] relative overflow-hidden">
       
-      {/* Dynamic Interactive Background (Sin rostro, 100% Ingeniería) */}
-      <InteractiveCyberBackground variant={bgVariant} />
-
-      {/* Floating Visual Atmosphere Switcher */}
-      <BackgroundDemoToolbar currentVariant={bgVariant} onVariantChange={setBgVariant} />
+      {/* Dynamic Interactive Neural Network Background */}
+      <InteractiveCyberBackground variant="neural" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-4">
         {/* Breadcrumb */}

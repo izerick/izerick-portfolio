@@ -12,8 +12,7 @@ import {
 } from 'lucide-react';
 import { FAQSection } from '../components/FAQSection';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
-import { InteractiveCyberBackground, BackgroundVariant } from '../components/InteractiveCyberBackground';
-import { BackgroundDemoToolbar } from '../components/BackgroundDemoToolbar';
+import { InteractiveCyberBackground } from '../components/InteractiveCyberBackground';
 
 type FilterType = 'all' | 'sistema' | 'ecommerce' | 'corporativo' | 'ia';
 
@@ -370,7 +369,6 @@ const ProjectMockupPreview: React.FC<{ type: ProjectItemData['previewType'] }> =
 export const ProjectsPage: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItemData | null>(null);
-  const [bgVariant, setBgVariant] = useState<BackgroundVariant>('neural');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -391,11 +389,8 @@ export const ProjectsPage: React.FC = () => {
   return (
     <div className="pt-24 pb-20 min-h-screen bg-[#070408] relative overflow-hidden text-left">
       
-      {/* Dynamic Interactive Background (Sin rostro, 100% Ingeniería) */}
-      <InteractiveCyberBackground variant={bgVariant} />
-
-      {/* Floating Visual Atmosphere Switcher */}
-      <BackgroundDemoToolbar currentVariant={bgVariant} onVariantChange={setBgVariant} />
+      {/* Dynamic Interactive Neural Network Background */}
+      <InteractiveCyberBackground variant="neural" />
       
       {/* Ambient Glow */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-rose-600/10 rounded-full blur-[150px] pointer-events-none" />

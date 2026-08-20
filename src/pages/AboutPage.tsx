@@ -6,12 +6,9 @@ import {
   ShieldCheck, 
   ArrowRight
 } from 'lucide-react';
-import { InteractiveCyberBackground, BackgroundVariant } from '../components/InteractiveCyberBackground';
-import { BackgroundDemoToolbar } from '../components/BackgroundDemoToolbar';
+import { InteractiveCyberBackground } from '../components/InteractiveCyberBackground';
 
 export const AboutPage: React.FC = () => {
-  const [bgVariant, setBgVariant] = React.useState<BackgroundVariant>('particles');
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,11 +16,8 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="pt-24 pb-20 min-h-screen bg-[#070408] relative overflow-hidden">
       
-      {/* Dynamic Interactive Background (Sin rostro, 100% Ingeniería) */}
-      <InteractiveCyberBackground variant={bgVariant} />
-
-      {/* Floating Visual Atmosphere Switcher */}
-      <BackgroundDemoToolbar currentVariant={bgVariant} onVariantChange={setBgVariant} />
+      {/* Dynamic Interactive Neural Network Background */}
+      <InteractiveCyberBackground variant="neural" />
 
       {/* Glows */}
       <div className="absolute top-10 left-1/3 w-[600px] h-[400px] bg-rose-600/10 rounded-full blur-[140px] pointer-events-none" />

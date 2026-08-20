@@ -21,6 +21,7 @@ import {
   Star
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
+import { InteractiveCyberBackground } from '../components/InteractiveCyberBackground';
 
 const INCLUDED_FEATURES = [
   {
@@ -175,6 +176,9 @@ export const LandingPageOffer: React.FC = () => {
   return (
     <div className="pt-24 pb-20 min-h-screen bg-[#070408] relative overflow-hidden">
       
+      {/* Dynamic Interactive Neural Network Background */}
+      <InteractiveCyberBackground variant="neural" />
+
       {/* Ambient background glows */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-rose-600/15 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
