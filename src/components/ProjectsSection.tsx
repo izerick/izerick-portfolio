@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, CheckCircle2, Glasses, ShoppingBag } from 'lucide-react';
+import { LiveBrowserPreview } from './LiveBrowserPreview';
 
 export const ProjectsSection: React.FC = () => {
   return (
@@ -44,6 +45,14 @@ export const ProjectsSection: React.FC = () => {
                   🟢 En Producción (Cloud Edge)
                 </span>
               </div>
+
+              {/* Real-Time Live Browser Preview */}
+              <LiveBrowserPreview
+                url="https://optica.izerick.dev"
+                title="Ópticas Visual Store"
+                badgeText="En Vivo • Vercel Edge"
+                heightClass="h-[190px] sm:h-[220px]"
+              />
 
               {/* Description */}
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

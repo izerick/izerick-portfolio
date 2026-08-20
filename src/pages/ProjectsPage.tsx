@@ -5,12 +5,12 @@ import {
   ExternalLink, 
   ArrowRight, 
   Check,
-  Eye,
-  ShieldCheck,
-  Smartphone,
+  ShieldCheck, 
+  Smartphone, 
   Globe
 } from 'lucide-react';
 import { FAQSection } from '../components/FAQSection';
+import { LiveBrowserPreview } from '../components/LiveBrowserPreview';
 
 interface ProjectItemData {
   id: string;
@@ -102,7 +102,7 @@ export const ProjectsPage: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs font-mono font-bold uppercase tracking-wider mb-4">
             <FolderGit2 className="w-4 h-4 text-rose-400" />
-            <span>Casos Reales &amp; Mockups Interactivos</span>
+            <span>Casos Reales &amp; Aplicaciones en Vivo</span>
           </span>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white font-heading tracking-tight leading-tight">
@@ -123,67 +123,16 @@ export const ProjectsPage: React.FC = () => {
               className="tech-card rounded-3xl p-6 sm:p-10 bg-[#10070e]/90 border-2 border-rose-950/80 hover:border-rose-500/40 transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
             >
               
-              {/* Left Column: Interactive Cyber Mockup */}
+              {/* Left Column: Interactive Cyber Mockup / Real Time Live Sandbox */}
               <div className="lg:col-span-7">
                 
-                {/* Mockup Case 1: Ópticas Visual Store (Browser Window SaaS Mockup) */}
-                {proj.type === 'saas' && (
-                  <div className="rounded-2xl bg-[#090407] border border-rose-500/30 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(244,63,94,0.15)]">
-                    {/* Window Titlebar */}
-                    <div className="bg-[#14070f] px-4 py-3 border-b border-rose-950 flex items-center justify-between text-xs font-mono">
-                      <div className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                        <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                        <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                        <span className="text-slate-400 ml-2 hidden sm:inline">optica.izerick.dev</span>
-                      </div>
-                      <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
-                        SSL ACTIVO • SUPABASE
-                      </span>
-                    </div>
-
-                    {/* Window Body: Clinical Refraction UI */}
-                    <div className="p-5 space-y-4 text-left">
-                      <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-rose-600/20 text-rose-400 flex items-center justify-center font-bold">
-                            <Eye className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <h4 className="text-xs font-bold text-white">Historia Clínica #2026-08</h4>
-                            <span className="text-[10px] text-slate-400">Paciente: Ficha de Refracción Oftalmológica</span>
-                          </div>
-                        </div>
-                        <span className="text-xs font-mono font-bold text-rose-300">$85.00 USD</span>
-                      </div>
-
-                      {/* Optical Grid */}
-                      <div className="grid grid-cols-2 gap-3 text-[11px] font-mono">
-                        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
-                          <span className="text-rose-400 font-bold block">OJO DERECHO (OD):</span>
-                          <div className="text-slate-300 flex justify-between">
-                            <span>Esf: <strong>-1.50</strong></span>
-                            <span>Cyl: <strong>-0.50</strong></span>
-                            <span>Eje: <strong>90°</strong></span>
-                          </div>
-                        </div>
-                        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
-                          <span className="text-rose-400 font-bold block">OJO IZQUIERDO (OI):</span>
-                          <div className="text-slate-300 flex justify-between">
-                            <span>Esf: <strong>-2.00</strong></span>
-                            <span>Cyl: <strong>-0.25</strong></span>
-                            <span>Eje: <strong>85°</strong></span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Billing Breakdown preview */}
-                      <div className="p-3 rounded-xl bg-rose-950/30 border border-rose-500/20 flex items-center justify-between text-xs">
-                        <span className="text-slate-300 text-[11px]">Facturación: Lunas Antirreflejo ($45) + Armazón ($40)</span>
-                        <span className="font-mono font-bold text-emerald-400">Balance OK</span>
-                      </div>
-                    </div>
-                  </div>
+                {/* Mockup Case 1: Live Real-Time Web Preview (Ópticas Visual Store) */}
+                {proj.liveUrl && (
+                  <LiveBrowserPreview
+                    url={proj.liveUrl}
+                    title={proj.title}
+                    badgeText="En Línea • Vercel Edge"
+                  />
                 )}
 
                 {/* Mockup Case 2: Tienda de Ropa (Mobile TikTok E-Commerce Mockup) */}
