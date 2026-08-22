@@ -18,14 +18,14 @@ export const ProjectsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+        {/* Projects Grid with Symmetric Flex Items */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
           
           {/* Project 1: Ópticas Visual Store */}
-          <div className="tech-card rounded-3xl p-5 sm:p-7 space-y-6 flex flex-col justify-between text-left border-l-4 border-l-rose-500 bg-[#11070e]/80">
+          <div className="tech-card rounded-3xl p-5 sm:p-7 space-y-6 flex flex-col justify-between h-full text-left border-l-4 border-l-rose-500 bg-[#11070e]/80">
             <div className="space-y-4 sm:space-y-5">
               
-              {/* Header: Responsive Stacking for Mobile */}
+              {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-rose-950/80 border border-rose-500/40 flex items-center justify-center text-rose-300 shrink-0 shadow-md">
@@ -46,20 +46,21 @@ export const ProjectsSection: React.FC = () => {
                 </span>
               </div>
 
-              {/* Real-Time Live Browser Preview */}
+              {/* Static Browser Mockup */}
               <LiveBrowserPreview
                 url="https://optica.izerick.dev"
+                imageSrc="/optica-preview.png"
                 title="Ópticas Visual Store"
-                badgeText="En Vivo • Vercel Edge"
-                heightClass="h-[190px] sm:h-[220px]"
+                badgeText="En Vivo • Cloud Edge"
+                heightClass="h-[200px] sm:h-[225px]"
               />
 
-              {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Plataforma web para centro óptico con gestión de fichas clínicas de pacientes, registro computarizado de graduación OD/OI, facturación con desglose independiente de lunas/armazones y sincronización con Google Maps Reviews.
+              {/* Description (Symmetrical length) */}
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed min-h-[54px] sm:min-h-[60px]">
+                Plataforma web para centro óptico con gestión de fichas clínicas, registro computarizado de agudeza visual OD/OI, facturación con desglose de lunas/armazones y sincronización con Google Maps Reviews.
               </p>
 
-              {/* Highlights */}
+              {/* Highlights (Exactly 4 items) */}
               <div className="space-y-2 text-xs font-mono text-slate-300">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
@@ -67,7 +68,11 @@ export const ProjectsSection: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                  <span>Facturación con valores de lunas y armazón por separado.</span>
+                  <span>Facturación con valores de lunas y armazón desglosados por separado.</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                  <span>Agenda médica de pacientes y sincronización con Google Reviews.</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
@@ -75,8 +80,8 @@ export const ProjectsSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
+              {/* Tags (Exactly 5 tags) */}
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                 {['React', 'TypeScript', 'Supabase', 'Cloud Hosting', 'SSL'].map(tag => (
                   <span
                     key={tag}
@@ -104,11 +109,11 @@ export const ProjectsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Project 2: Tienda de Ropa E-Commerce */}
-          <div className="tech-card rounded-3xl p-5 sm:p-7 space-y-6 flex flex-col justify-between text-left border-l-4 border-l-amber-500 bg-[#11070e]/80">
+          {/* Project 2: DemoStore Streetwear */}
+          <div className="tech-card rounded-3xl p-5 sm:p-7 space-y-6 flex flex-col justify-between h-full text-left border-l-4 border-l-amber-500 bg-[#11070e]/80">
             <div className="space-y-4 sm:space-y-5">
               
-              {/* Header: Responsive Stacking for Mobile */}
+              {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/40 flex items-center justify-center text-amber-300 shrink-0 shadow-md">
@@ -116,7 +121,7 @@ export const ProjectsSection: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-bold text-white font-heading leading-snug">
-                      Tienda de Ropa &amp; Moda Urbana
+                      DemoStore Streetwear®
                     </h3>
                     <span className="text-xs text-amber-300 font-mono block">
                       E-Commerce &amp; Catálogo Digital
@@ -129,38 +134,43 @@ export const ProjectsSection: React.FC = () => {
                 </span>
               </div>
 
-              {/* Real-Time Live Browser Preview */}
+              {/* Static Browser Mockup */}
               <LiveBrowserPreview
                 url="https://demoropa.izerick.dev"
+                imageSrc="/demoropa-preview.png"
                 title="DemoStore Streetwear"
-                badgeText="En Vivo • Vercel Edge"
-                heightClass="h-[190px] sm:h-[220px]"
+                badgeText="En Vivo • Cloud Edge"
+                heightClass="h-[200px] sm:h-[225px]"
               />
 
-              {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Catálogo digital diseñado para capturar tráfico de TikTok y redes sociales, permitiendo ventas al por menor y mayor con descuentos por volumen y botón de checkout directo hacia WhatsApp.
+              {/* Description (Symmetrical length) */}
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed min-h-[54px] sm:min-h-[60px]">
+                Catálogo de moda urbana para captar tráfico viral de redes sociales, con venta al por mayor/menor, segmentación por tallas (S/M/L/XL), modo blanco/oscuro y checkout directo hacia WhatsApp.
               </p>
 
-              {/* Highlights */}
+              {/* Highlights (Exactly 4 items) */}
               <div className="space-y-2 text-xs font-mono text-slate-300">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>Segmentación por tallas (S/M/L/XL), colores y disponibilidad.</span>
+                  <span>Segmentación por tallas (S/M/L/XL), colores y stock en tiempo real.</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>Mensaje de WhatsApp prellenado con foto y detalle de prenda.</span>
+                  <span>Descuentos mayoristas automáticos al llevar 6+ unidades por modelo.</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>Diseño ultra ligero para navegación rápida en celulares.</span>
+                  <span>Checkout directo hacia WhatsApp prellenado con foto y detalle de pedido.</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Desplegado en Infraestructura Cloud de Alta Velocidad con SSL.</span>
                 </div>
               </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-                {['React', 'TailwindCSS', 'WhatsApp CRM', 'PWA Móvil'].map(tag => (
+              {/* Tags (Exactly 5 tags) */}
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
+                {['React', 'TailwindCSS', 'WhatsApp CRM', 'PWA Móvil', 'SSL'].map(tag => (
                   <span
                     key={tag}
                     className="px-2 py-0.5 rounded bg-[#130a0e] border border-rose-950 text-[10px] sm:text-[11px] font-mono text-slate-300"
@@ -174,7 +184,7 @@ export const ProjectsSection: React.FC = () => {
 
             {/* Action Bar */}
             <div className="pt-4 border-t border-rose-950/60 flex flex-wrap items-center justify-between gap-3">
-              <span className="text-xs font-mono text-slate-400">Enfoque: Moda &amp; Tiendas Ecuador</span>
+              <span className="text-xs font-mono text-slate-400">Cliente: Boutique &amp; Distro</span>
               <a
                 href="https://demoropa.izerick.dev"
                 target="_blank"

@@ -78,6 +78,7 @@ const PROJECTS_DATA: ProjectItemData[] = [
     status: '🟢 En Producción',
     accentColor: 'from-amber-900/30 via-rose-950/40 to-pink-950/30 border-amber-500/30 text-amber-400',
     previewType: 'ecommerce',
+    image: '/demoropa-preview.png',
     liveUrl: 'https://demoropa.izerick.dev',
     description: 'Catálogo de comercio electrónico optimizado para celulares y tráfico viral de redes sociales, con venta al por mayor/menor, selector de tallas y pedido directo por mensajería.',
     challenge: 'Pérdida de compras impulsivas de TikTok e Instagram por carritos de compra lentos y formularios de registro obligatorios.',

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { ExternalLink, Lock, RefreshCw, Sparkles } from 'lucide-react';
+import React from 'react';
+import { ExternalLink, Lock, Sparkles } from 'lucide-react';
 
 interface LiveBrowserPreviewProps {
   url: string;
+  imageSrc?: string;
   title: string;
   badgeText?: string;
   heightClass?: string;
@@ -10,13 +11,11 @@ interface LiveBrowserPreviewProps {
 
 export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
   url,
+  imageSrc,
   title,
-  badgeText = 'En Línea • Vercel Edge',
-  heightClass = 'h-[220px] sm:h-[250px]',
+  badgeText = 'En Vivo • Cloud Edge',
+  heightClass = 'h-[210px] sm:h-[230px]',
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [iframeKey, setIframeKey] = useState(0);
-
   const cleanDisplayUrl = url.replace(/^https?:\/\//, '');
 
   return (
@@ -34,18 +33,8 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
         <div className="flex-1 max-w-xs mx-auto bg-[#0a0308] border border-rose-950/70 rounded-lg px-2.5 py-0.5 flex items-center justify-between gap-2 text-[10px] text-slate-300">
           <div className="flex items-center gap-1.5 truncate">
             <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
-            <span className="truncate text-slate-300">{cleanDisplayUrl}</span>
+            <span className="truncate text-slate-300 font-mono">{cleanDisplayUrl}</span>
           </div>
-          <button
-            onClick={() => {
-              setIsLoading(true);
-              setIframeKey((k) => k + 1);
-            }}
-            className="text-slate-500 hover:text-rose-300 transition-colors p-0.5 shrink-0"
-            title="Recargar vista previa en vivo"
-          >
-            <RefreshCw className={`w-2.5 h-2.5 ${isLoading ? 'animate-spin' : ''}`} />
-          </button>
         </div>
 
         {/* Status & Open Action */}
@@ -66,38 +55,31 @@ export const LiveBrowserPreview: React.FC<LiveBrowserPreviewProps> = ({
         </div>
       </div>
 
-      {/* Live Viewport */}
+      {/* High-Resolution Static Browser Viewport */}
       <div className={`relative w-full ${heightClass} bg-[#070306] overflow-hidden`}>
-        {isLoading && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#070306]/90 backdrop-blur-sm gap-2 text-rose-300 font-mono text-xs">
-            <div className="w-5 h-5 border-2 border-rose-500 border-t-transparent rounded-full animate-spin" />
-            <span className="text-[11px]">Cargando vista previa en tiempo real...</span>
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={title}
+            className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-[#0d050a] text-slate-400 text-xs font-mono">
+            <span>{title}</span>
           </div>
         )}
-
-        {/* High-DPI Scaled Real-Time Embedded App */}
-        <div className="w-full h-full overflow-hidden relative">
-          <iframe
-            key={iframeKey}
-            src={url}
-            title={title}
-            onLoad={() => setIsLoading(false)}
-            className="w-[180%] h-[180%] origin-top-left scale-[0.555] border-0"
-            loading="lazy"
-            sandbox="allow-scripts allow-same-origin allow-forms"
-          />
-        </div>
 
         {/* Hover Quick Action Overlay */}
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute inset-0 bg-gradient-to-t from-[#070306]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-5 pointer-events-none group-hover:pointer-events-auto"
+          className="absolute inset-0 bg-gradient-to-t from-[#070306]/90 via-[#070306]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4"
         >
           <span className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 text-white font-bold text-xs flex items-center gap-2 shadow-[0_0_25px_rgba(244,63,94,0.7)] ring-1 ring-rose-300/50">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>Abrir Demo en Vivo</span>
+            <span>Ver Web en Producción</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </span>
         </a>
