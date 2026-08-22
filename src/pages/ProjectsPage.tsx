@@ -69,15 +69,16 @@ const PROJECTS_DATA: ProjectItemData[] = [
   },
   {
     id: 'tienda-ropa-ecommerce',
-    name: 'Streetwear & Moda Urbana',
+    name: 'DemoStore® — Streetwear & Moda Urbana',
     catLabel: 'E-Commerce',
-    type: 'Catálogo Móvil PWA',
+    type: 'Catálogo Móvil & Mayorista PWA',
     filterKey: 'ecommerce',
     industry: 'Moda, Ropa & Calzado',
     location: 'Ecuador 🇪🇨',
-    status: '⚡ Optimizado Mobile',
-    accentColor: 'from-rose-900/30 via-red-950/40 to-pink-950/30 border-rose-500/30 text-rose-400',
+    status: '🟢 En Producción',
+    accentColor: 'from-amber-900/30 via-rose-950/40 to-pink-950/30 border-amber-500/30 text-amber-400',
     previewType: 'ecommerce',
+    liveUrl: 'https://demoropa.izerick.dev',
     description: 'Catálogo de comercio electrónico optimizado para celulares y tráfico viral de redes sociales, con venta al por mayor/menor, selector de tallas y pedido directo por mensajería.',
     challenge: 'Pérdida de compras impulsivas de TikTok e Instagram por carritos de compra lentos y formularios de registro obligatorios.',
     solution: 'Creamos una tienda online ultrarrápida con selector de tallas (S/M/L/XL), descuentos por compras en volumen y checkout directo a WhatsApp en 2 clics.',
@@ -87,7 +88,7 @@ const PROJECTS_DATA: ProjectItemData[] = [
       { label: 'Precios Mayor', value: 'Automáticos' }
     ],
     highlights: [
-      'Descuentos automáticos por compras al por mayor (3+ prendas).',
+      'Descuentos automáticos por compras al por mayor (6+ prendas).',
       'Filtros instantáneos por tallas, colores y disponibilidad en bodega.',
       'Conexión directa con WhatsApp Business para cierre de venta sin fricción.',
       'Diseño 100% Mobile-First para compras desde el teléfono.'

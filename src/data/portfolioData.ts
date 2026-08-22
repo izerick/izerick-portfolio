@@ -85,7 +85,7 @@ export const PORTFOLIO_DATA = {
       id: 'tienda-ropa-ecommerce',
       title: 'Tienda de Ropa & Moda Urbana',
       category: 'E-Commerce & Catálogo Digital',
-      status: 'En Desarrollo Activo',
+      status: 'En Producción (Vercel Edge)',
       description: 'Catálogo de comercio electrónico optimizado para tráfico viral de TikTok, con venta al por mayor/menor, segmentación por tallas (S/M/L/XL) y checkout directo para cierre de ventas.',
       highlights: [
         'Descuentos automáticos por compras al por mayor.',
@@ -94,6 +94,7 @@ export const PORTFOLIO_DATA = {
         'Optimizado 100% para celulares y carga ultrarrápida.'
       ],
       tags: ['React', 'TailwindCSS', 'PWA Móvil', 'E-Commerce'],
+      liveUrl: 'https://demoropa.izerick.dev/',
       client: 'Boutique & Moda Ecuador',
       year: '2026'
     }

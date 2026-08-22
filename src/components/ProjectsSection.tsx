@@ -125,9 +125,17 @@ export const ProjectsSection: React.FC = () => {
                 </div>
 
                 <span className="self-start sm:self-auto text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-amber-950/90 border border-amber-500/40 text-amber-300 shrink-0">
-                  🟡 En Desarrollo Activo
+                  🟢 En Producción (Cloud Edge)
                 </span>
               </div>
+
+              {/* Real-Time Live Browser Preview */}
+              <LiveBrowserPreview
+                url="https://demoropa.izerick.dev"
+                title="DemoStore Streetwear"
+                badgeText="En Vivo • Vercel Edge"
+                heightClass="h-[190px] sm:h-[220px]"
+              />
 
               {/* Description */}
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -167,7 +175,15 @@ export const ProjectsSection: React.FC = () => {
             {/* Action Bar */}
             <div className="pt-4 border-t border-rose-950/60 flex flex-wrap items-center justify-between gap-3">
               <span className="text-xs font-mono text-slate-400">Enfoque: Moda &amp; Tiendas Ecuador</span>
-              <span className="text-xs font-mono text-amber-300 font-semibold">Boceto en Preparación</span>
+              <a
+                href="https://demoropa.izerick.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-500 hover:to-rose-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)]"
+              >
+                <span>Ver Web en Producción</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
 
