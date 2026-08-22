@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { 
   ArrowRight, 
-  ArrowUpRight, 
   Check, 
   Eye, 
   ExternalLink, 
   MessageCircle, 
-  Sparkles, 
   X 
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
