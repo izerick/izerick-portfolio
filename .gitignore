@@ -23,3 +23,10 @@ Thumbs.db
 
 # Source raw frame images (already preloaded in public/sequence)
 secuencia de imagenes/
+
+# Internal Studio Rules & Docs (Private / Local only)
+.agents/
+.agent/
+AGENTS.md
+GEMINI.md
+docs/
