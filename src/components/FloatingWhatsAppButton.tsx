@@ -95,7 +95,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
 
       {/* 3D Animated Trigger Button */}
       <motion.div
-        animate={{ y: [0, -6, 0] }}
+        animate={{ y: [0, -5, 0] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         className="relative flex items-center justify-center"
       >
@@ -103,31 +103,31 @@ export const FloatingWhatsAppButton: React.FC = () => {
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.94 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="relative group w-16 h-16 rounded-full flex items-center justify-center cursor-pointer outline-none border-none bg-transparent"
+          className="relative group w-12 h-12 sm:w-13 sm:h-13 rounded-full flex items-center justify-center cursor-pointer outline-none border-none bg-transparent"
           aria-label="Abrir WhatsApp oficial de Erick Bermello"
         >
           {/* Notification Badge */}
-          <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-rose-500 border-2 border-[#09090b] text-white text-[10px] font-black flex items-center justify-center z-20 shadow-md">
+          <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-rose-500 border-2 border-[#09090b] text-white text-[9px] font-black flex items-center justify-center z-20 shadow-md">
             1
           </span>
 
           {/* Pulsating Ambient Aura */}
           <span 
-            className="absolute -inset-1.5 rounded-full bg-emerald-500/35 blur-sm animate-ping pointer-events-none" 
+            className="absolute -inset-1 rounded-full bg-emerald-500/35 blur-sm animate-ping pointer-events-none" 
             style={{ animationDuration: '3s' }} 
           />
 
           {/* 3D Embossed Sphere Body */}
           <div 
-            className="relative w-full h-full rounded-full flex items-center justify-center z-10 transition-all duration-300 group-hover:shadow-[0_20px_38px_rgba(0,0,0,0.6),0_0_35px_rgba(37,211,102,0.7)]"
+            className="relative w-full h-full rounded-full flex items-center justify-center z-10 transition-all duration-300 group-hover:shadow-[0_16px_32px_rgba(0,0,0,0.6),0_0_28px_rgba(37,211,102,0.7)]"
             style={{
               background: 'radial-gradient(circle at 35% 30%, #4ae384 0%, #25d366 45%, #18a84f 80%, #0d6e32 100%)',
-              boxShadow: '0 12px 26px rgba(0,0,0,0.5), 0 0 24px rgba(37,211,102,0.45), inset 0 3px 5px rgba(255,255,255,0.65), inset 0 -5px 8px rgba(0,0,0,0.4)'
+              boxShadow: '0 10px 20px rgba(0,0,0,0.5), 0 0 20px rgba(37,211,102,0.4), inset 0 2.5px 4px rgba(255,255,255,0.65), inset 0 -4px 6px rgba(0,0,0,0.4)'
             }}
           >
             {/* Top Gloss Arc Highlight */}
             <div 
-              className="absolute top-1.5 left-3 w-10 h-5 rounded-[50%_50%_40%_40%/80%_80%_30%_30%] pointer-events-none z-10"
+              className="absolute top-1 left-2.5 w-7 h-3.5 rounded-[50%_50%_40%_40%/80%_80%_30%_30%] pointer-events-none z-10"
               style={{
                 background: 'linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0) 100%)'
               }}
@@ -135,8 +135,8 @@ export const FloatingWhatsAppButton: React.FC = () => {
 
             {/* 3D Phone Icon SVG */}
             <svg 
-              className="w-8 h-8 fill-white relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-              style={{ filter: 'drop-shadow(0 3px 4px rgba(0,0,0,0.35))' }}
+              className="w-6 h-6 fill-white relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+              style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.35))' }}
               viewBox="0 0 24 24"
             >
               <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.3-1.95 1.38-.5.08-1.15.12-3.32-.78-2.6-1.08-4.27-3.72-4.4-3.89-.13-.17-1.05-1.4-1.05-2.67 0-1.27.66-1.89.9-2.14.23-.25.51-.31.68-.31.17 0 .34.01.49.02.16.01.37-.06.58.44.22.52.75 1.83.82 1.97.07.14.11.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.35-.42.47-.14.14-.29.29-.12.58.17.29.74 1.22 1.59 1.98 1.1.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.25.68-.14.28.11 1.78.84 2.09.99.31.15.51.23.58.36.07.13.07.76-.17 1.44z"/>
@@ -145,7 +145,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
 
           {/* Desktop Tooltip */}
           {!isOpen && (
-            <span className="hidden sm:group-hover:inline-flex absolute right-20 px-3.5 py-1.5 rounded-xl bg-[#11070e]/95 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold whitespace-nowrap shadow-2xl backdrop-blur-xl">
+            <span className="hidden sm:group-hover:inline-flex absolute right-16 px-3 py-1.5 rounded-xl bg-[#11070e]/95 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold whitespace-nowrap shadow-2xl backdrop-blur-xl">
               💬 Chatear con Erick
             </span>
           )}
