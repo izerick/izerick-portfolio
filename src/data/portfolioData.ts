@@ -65,6 +65,25 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
+      id: 'sastreria-lorenz-franz',
+      title: 'Lorenz Franz • Alta Sastrería',
+      category: 'Sitio Web Editorial & Catálogo Sartorial',
+      status: 'En Producción',
+      description: 'Experiencia web de alta gama para sastrería a medida tradicional. Incluye preloader cinemático, carrusel circulante elástico de trajes en alta resolución con físicas GSAP, catálogo interactivo de paños italianos e ingleses, y conexión directa para agendar citas a medida.',
+      highlights: [
+        'Preloader sartorial y animaciones de scroll con GSAP ScrollTrigger.',
+        'Carrusel circulante infinito con físicas elásticas y soporte táctil dual.',
+        'Catálogo de trajes, smokings y chaqués en paños Super 120s / 150s.',
+        'Biblioteca de tejidos (Loro Piana, Holland & Sherry, Scabal, Dormeuil).',
+        'Sistema de cotización y agendamiento directo de citas.'
+      ],
+      tags: ['HTML5', 'TailwindCSS', 'GSAP Animation', 'ScrollTrigger', 'Vercel'],
+      liveUrl: 'https://sastreria.izerick.dev',
+      client: 'Lorenz Franz • Franklin Alcívar',
+      year: '2026'
+    },
+
+    {
       id: 'opticas-visual-store',
       title: 'Ópticas Visual Store®',
       category: 'Plataforma Clínica & Sistema SaaS',
