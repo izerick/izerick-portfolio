@@ -80,32 +80,6 @@ const SHOWCASE_PROJECTS: ShowcaseProject[] = [
       'Despliegue en servidores cloud seguros con encriptación SSL.'
     ],
     specs: ['Frontend React Pro', 'Código TypeScript', 'Base de Datos Cloud', 'TailwindCSS', 'Arquitectura Modular']
-  },
-  {
-    id: 'demostore-streetwear',
-    name: 'DemoStore Streetwear®',
-    catLabel: 'E-Commerce',
-    type: 'Catálogo Móvil & Mayorista PWA',
-    industry: 'Moda Urbana & Distribución',
-    location: 'Ecuador 🇪🇨',
-    status: '🟢 En Producción',
-    image: '/demoropa-preview.png',
-    liveUrl: 'https://demoropa.izerick.dev',
-    description: 'Catálogo de comercio electrónico optimizado para captar tráfico viral de TikTok e Instagram, con venta al por mayor/menor, selector de tallas y checkout a WhatsApp.',
-    challenge: 'Pérdida de compras impulsivas de redes sociales por carritos de compra lentos y formularios de registro obligatorios.',
-    solution: 'Creamos una tienda online ultrarrápida con selector de tallas (S/M/L/XL), descuentos automáticos por compras en volumen y checkout directo a WhatsApp en 2 clics.',
-    metrics: [
-      { label: 'Velocidad Móvil', value: 'Instantánea' },
-      { label: 'Checkout', value: '2 Clics' },
-      { label: 'Precios Mayor', value: 'Automáticos' }
-    ],
-    highlights: [
-      'Descuentos automáticos por compras al por mayor (6+ unidades por modelo).',
-      'Filtros instantáneos por tallas, colores y disponibilidad en bodega.',
-      'Conexión directa con WhatsApp Business para cierre de venta sin fricción.',
-      'Diseño 100% Mobile-First y PWA para compras desde el teléfono.'
-    ],
-    specs: ['Mobile-First PWA', 'React Pro', 'TailwindCSS', 'Integración WhatsApp API', 'Optimización Web']
   }
 ];
 
@@ -127,8 +101,8 @@ export const ProjectsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 3-Column Responsive Interactive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+        {/* 2-Column Parallel Interactive Grid (2 en móvil y 2 en escritorio) */}
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-6 lg:gap-8 items-stretch">
           {SHOWCASE_PROJECTS.map((proj) => (
             <article
               key={proj.id}
@@ -156,7 +130,7 @@ export const ProjectsSection: React.FC = () => {
                   </div>
 
                   {/* Screenshot Viewport */}
-                  <div className="relative h-[140px] sm:h-[165px] overflow-hidden bg-[#070308]">
+                  <div className="relative h-[95px] xs:h-[120px] sm:h-[190px] overflow-hidden bg-[#070308]">
                     <img
                       src={proj.image}
                       alt={proj.name}
@@ -177,7 +151,7 @@ export const ProjectsSection: React.FC = () => {
               </div>
 
               {/* Card Body */}
-              <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-3.5">
+              <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-3.5">
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span className="text-[8px] sm:text-[10px] font-mono font-bold text-rose-400 uppercase tracking-wider truncate">
@@ -188,7 +162,7 @@ export const ProjectsSection: React.FC = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-sm sm:text-lg font-bold text-white group-hover:text-rose-300 transition-colors font-heading leading-tight">
+                  <h3 className="text-xs sm:text-lg font-bold text-white group-hover:text-rose-300 transition-colors font-heading leading-tight truncate">
                     {proj.name}
                   </h3>
 
