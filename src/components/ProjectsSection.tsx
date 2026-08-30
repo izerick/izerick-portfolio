@@ -36,7 +36,7 @@ const SHOWCASE_PROJECTS: ShowcaseProject[] = [
     industry: 'Alta Costura Masculina & Trajes a Medida',
     location: 'Ecuador 🇪🇨',
     status: '🟢 En Producción',
-    image: '',
+    image: '/sastreria-preview.png',
     liveUrl: 'https://sitioweblorenzfranz.vercel.app',
     description: 'Experiencia web de alta gama y catálogo interactivo para sastrería a medida tradicional. Incluye preloader cinemático, carrusel circulante elástico con físicas GSAP, catálogo de paños importados y agendamiento directo.',
     challenge: 'La sastrería tradicional requería digitalizar su catálogo de trajes, smokings y paños de alta gama con una estética de lujo artesanal.',

@@ -49,6 +49,7 @@ const PROJECTS_DATA: ProjectItemData[] = [
     status: '🟢 En Producción',
     accentColor: 'from-amber-900/30 via-yellow-950/40 to-stone-950/30 border-amber-500/40 text-amber-300',
     previewType: 'tailor',
+    image: '/sastreria-preview.png',
     liveUrl: 'https://sitioweblorenzfranz.vercel.app',
     description: 'Experiencia web de alta gama y catálogo interactivo para sastrería a medida tradicional. Incluye preloader cinemático, carrusel circulante elástico con físicas GSAP, catálogo de paños importados y agendamiento directo.',
     challenge: 'La sastrería tradicional requería digitalizar su catálogo de trajes, smokings y paños de alta gama (Super 120s/150s) con una estética de lujo que reflejara el prestigio artesanal de décadas.',
