@@ -26,7 +26,7 @@ interface ProjectItemData {
   location: string;
   status: string;
   accentColor: string;
-  previewType: 'optical' | 'ecommerce' | 'corporate' | 'bot' | 'restaurant' | 'realestate';
+  previewType: 'tailor' | 'optical' | 'ecommerce' | 'corporate' | 'bot' | 'restaurant' | 'realestate';
   image?: string;
   liveUrl?: string;
   description: string;
@@ -38,6 +38,35 @@ interface ProjectItemData {
 }
 
 const PROJECTS_DATA: ProjectItemData[] = [
+  {
+    id: 'lorenz-franz-sastreria',
+    name: 'Lorenz Franz — Alta Sastrería',
+    catLabel: 'Web Corporativa',
+    type: 'Catálogo Sartorial & Citas Cloud',
+    filterKey: 'corporativo',
+    industry: 'Alta Costura Masculina & Trajes a Medida',
+    location: 'Ecuador 🇪🇨',
+    status: '🟢 En Producción',
+    accentColor: 'from-amber-900/30 via-yellow-950/40 to-stone-950/30 border-amber-500/40 text-amber-300',
+    previewType: 'tailor',
+    liveUrl: 'https://sitioweblorenzfranz.vercel.app',
+    description: 'Experiencia web de alta gama y catálogo interactivo para sastrería a medida tradicional. Incluye preloader cinemático, carrusel circulante elástico con físicas GSAP, catálogo de paños importados y agendamiento directo.',
+    challenge: 'La sastrería tradicional requería digitalizar su catálogo de trajes, smokings y paños de alta gama (Super 120s/150s) con una estética de lujo que reflejara el prestigio artesanal de décadas.',
+    solution: 'Desarrollamos un sitio web editorial con preloader cinético, carrusel continuo interactivo con soporte táctil dual, catálogo interactivo de tejidos y botón de cotización directa.',
+    metrics: [
+      { label: 'Tiempo Carga', value: '< 0.5s' },
+      { label: 'Experiencia UX', value: '100% Fluida' },
+      { label: 'Confección', value: 'Alta Costura' }
+    ],
+    highlights: [
+      'Preloader editorial y revelación cinemática con GSAP ScrollTrigger.',
+      'Carrusel circulante infinito con físicas elásticas y soporte táctil dual.',
+      'Catálogo de smokings, chaqués y trajes en lana virgen y satén.',
+      'Biblioteca de paños importados (Loro Piana, Holland & Sherry, Scabal).'
+    ],
+    specs: ['HTML5 / TailwindCSS', 'Animaciones GSAP', 'ScrollTrigger Físicas', 'Diseño Responsive', 'Despliegue Edge Vercel']
+  },
+
   {
     id: 'optica-visual-store',
     name: 'Ópticas Visual Store®',
