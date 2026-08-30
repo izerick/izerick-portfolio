@@ -21,10 +21,10 @@ interface ChatMessage {
 }
 
 const QUICK_QUESTIONS = [
+  '🧮 Probar Cotizador Interactivo',
   '💼 ¿Cuánto cuesta una página o tienda?',
-  '👔 Ver proyecto Sastrería Lorenz Franz',
-  '👓 ¿Qué incluye el Software de Ópticas?',
-  '⚡ Cotizar un software o sistema a medida'
+  '👔 Ver Sastrería Lorenz Franz',
+  '👓 ¿Qué incluye el Software de Ópticas?'
 ];
 
 // Helper to format text with bold (**text** or *text*), line breaks, and bullets
@@ -127,7 +127,10 @@ export const FloatingWhatsAppButton: React.FC = () => {
           let actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, estuve chateando con tu IA en izerick.dev sobre: "${userQuery}"`)}`;
           let actionLabel = 'Continuar en WhatsApp con Erick';
 
-          if (userQuery.toLowerCase().includes('sastreria') || userQuery.toLowerCase().includes('lorenz')) {
+          if (userQuery.toLowerCase().includes('cotiz') || userQuery.toLowerCase().includes('precio') || userQuery.toLowerCase().includes('costo') || userQuery.toLowerCase().includes('calcular')) {
+          actionUrl = '/cotizar';
+          actionLabel = 'Abrir Cotizador Interactivo ↗';
+        } else if (userQuery.toLowerCase().includes('sastreria') || userQuery.toLowerCase().includes('lorenz')) {
             actionUrl = 'https://sastre.izerick.dev';
             actionLabel = 'Ver Sastrería Lorenz Franz ↗';
           } else if (userQuery.toLowerCase().includes('optica')) {
