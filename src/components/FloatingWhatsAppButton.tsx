@@ -39,7 +39,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
     {
       id: '1',
       sender: 'bot',
-      text: '¡Hola! 👋 Soy el Asistente Virtual de Erick. Estoy conectado 24/7 para responder preguntas sobre servicios, precios o agendar tu proyecto. ¿En qué te puedo ayudar hoy?',
+      text: '¡Hola! 👋 Soy el Asistente Virtual de Erick con Inteligencia Artificial. Estoy conectado 24/7 para responder preguntas sobre servicios, precios o cotizar tu proyecto. ¿En qué te puedo ayudar hoy?',
       time: 'Ahora'
     }
   ]);
@@ -54,34 +54,72 @@ export const FloatingWhatsAppButton: React.FC = () => {
     }
   }, [messages, isOpen]);
 
-  const handleAIResponse = (userQuery: string) => {
+  const handleAIResponse = async (userQuery: string) => {
     setIsTyping(true);
 
+    try {
+      const response = await fetch('http://168.138.70.4/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userQuery,
+          sessionId: 'web_session_' + (window.sessionStorage.getItem('chat_session') || Date.now())
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.reply) {
+          let actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, estuve chateando con tu IA en izerick.dev sobre: "${userQuery}"`)}`;
+          let actionLabel = 'Continuar en WhatsApp con Erick';
+
+          if (userQuery.toLowerCase().includes('sastreria') || userQuery.toLowerCase().includes('lorenz')) {
+            actionUrl = 'https://sastre.izerick.dev';
+            actionLabel = 'Ver Sastrería Lorenz Franz ↗';
+          } else if (userQuery.toLowerCase().includes('optica')) {
+            actionUrl = 'https://optica.izerick.dev';
+            actionLabel = 'Ver Plataforma Ópticas ↗';
+          }
+
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: Date.now().toString(),
+              sender: 'bot',
+              text: data.reply,
+              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+              actionUrl,
+              actionLabel
+            }
+          ]);
+          setIsTyping(false);
+          return;
+        }
+      }
+    } catch (err) {
+      console.log('Using local intelligent fallback...');
+    }
+
+    // Local smart fallback if offline
     setTimeout(() => {
       const q = userQuery.toLowerCase();
       let reply = '';
-      let actionUrl: string | undefined = undefined;
-      let actionLabel: string | undefined = undefined;
+      let actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, vi tu portafolio y quiero cotizar: "${userQuery}"`)}`;
+      let actionLabel = 'Chatear con Erick por WhatsApp';
 
-      if (q.includes('precio') || q.includes('costo') || q.includes('cuanto') || q.includes('cuánto') || q.includes('cotiz')) {
-        reply = 'Desarrollamos soluciones a medida con arquitectura cloud de alta velocidad. Los proyectos parten desde $250 para landing corporativas, $450 para tiendas online y $650 para sistemas complejos. ¿Qué funciones necesitas para darte una cotización exacta?';
-        actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola Erick, estuve chateando con tu IA en izerick.dev y quiero cotizar un proyecto.')}`;
+      if (q.includes('precio') || q.includes('costo') || q.includes('cuanto') || q.includes('cuánto')) {
+        reply = 'Desarrollamos soluciones a medida en la nube. Los proyectos parten desde $250 para landing pages corporativas, $450 para tiendas online y $650 para sistemas complejos. ¿Qué funciones necesitas en tu proyecto?';
         actionLabel = 'Cotizar con Erick por WhatsApp';
       } else if (q.includes('sastreria') || q.includes('sastrería') || q.includes('lorenz') || q.includes('traje')) {
         reply = 'Lorenz Franz es una experiencia web editorial para alta costura con preloader cinético, catálogo de telas importadas y carrusel elástico en Vercel Edge.';
         actionUrl = 'https://sastre.izerick.dev';
         actionLabel = 'Ver Sastrería Lorenz Franz en Vivo ↗';
       } else if (q.includes('optica') || q.includes('médic') || q.includes('clinica') || q.includes('clínica')) {
-        reply = 'Ópticas Visual Store® es una plataforma médica en la nube con fichas de refracción (OD/OI), facturación desglosada y control de caja.';
+        reply = 'Ópticas Visual Store® es una plataforma médica en la nube con historias clínicas digitales, refracción computarizada (OD/OI) y facturación desglosada.';
         actionUrl = 'https://optica.izerick.dev';
         actionLabel = 'Ver Plataforma Médica Ópticas ↗';
-      } else if (q.includes('contacto') || q.includes('erick') || q.includes('hablar') || q.includes('whatsapp') || q.includes('llamar')) {
-        reply = '¡Por supuesto! Puedes chatear directamente con Erick por WhatsApp para revisar requerimientos y tiempos de entrega.';
-        actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola Erick, vi tu portafolio y me gustaría conversar contigo sobre un proyecto.')}`;
-        actionLabel = 'Abrir WhatsApp (+593 96 709 7679)';
       } else {
-        reply = `Entiendo tu consulta sobre "${userQuery}". Para darte una respuesta técnica personalizada y verificar disponibilidad de fechas, ¿deseas que te conecte directamente con Erick?`;
-        actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, estuve en tu web consultando sobre: "${userQuery}".`)}`;
+        reply = `Entiendo tu consulta sobre "${userQuery}". Para darte una propuesta personalizada y tiempos de entrega exactos, conversemos directamente por WhatsApp.`;
         actionLabel = 'Continuar en WhatsApp con Erick';
       }
 
@@ -97,7 +135,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
         }
       ]);
       setIsTyping(false);
-    }, 600);
+    }, 400);
   };
 
   const handleSendMessage = (textToSend?: string) => {
@@ -121,7 +159,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
       {
         id: '1',
         sender: 'bot',
-        text: '¡Hola! 👋 Soy el Asistente Virtual de Erick. Estoy conectado 24/7 para responder preguntas sobre servicios, precios o agendar tu proyecto. ¿En qué te puedo ayudar hoy?',
+        text: '¡Hola! 👋 Soy el Asistente Virtual de Erick con Inteligencia Artificial. Estoy conectado 24/7 para responder preguntas sobre servicios, precios o cotizar tu proyecto. ¿En qué te puedo ayudar hoy?',
         time: 'Ahora'
       }
     ]);
@@ -153,11 +191,11 @@ export const FloatingWhatsAppButton: React.FC = () => {
                   <div className="flex items-center gap-1.5">
                     <h4 className="text-xs font-bold font-heading">IzErick AI Assistant</h4>
                     <span className="px-1.5 py-0.2 rounded bg-rose-900/80 text-rose-300 text-[8px] font-mono font-bold uppercase border border-rose-500/30">
-                      GPT/Cloud
+                      Gemini 3.6
                     </span>
                   </div>
                   <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-                    🟢 En línea 24/7 • Respuestas instantáneas
+                    🟢 En línea 24/7 • Respuestas con IA
                   </span>
                 </div>
               </div>
@@ -217,7 +255,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
               {isTyping && (
                 <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-white/[0.04] border border-white/10 w-fit text-slate-400 text-xs">
                   <Sparkles className="w-3.5 h-3.5 text-rose-400 animate-spin" />
-                  <span className="font-mono text-[11px] animate-pulse">Erick AI está escribiendo...</span>
+                  <span className="font-mono text-[11px] animate-pulse">Erick AI está pensando...</span>
                 </div>
               )}
 
