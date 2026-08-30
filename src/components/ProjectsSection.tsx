@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   Check, 
@@ -54,7 +55,6 @@ const SHOWCASE_PROJECTS: ShowcaseProject[] = [
     ],
     specs: ['HTML5 / TailwindCSS', 'Animaciones GSAP', 'ScrollTrigger Físicas', 'Diseño Responsive', 'Despliegue Edge Vercel']
   },
-
   {
     id: 'opticas-visual-store',
     name: 'Ópticas Visual Store®',
@@ -127,8 +127,8 @@ export const ProjectsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 2-Column Parallel Interactive Grid */}
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-6 lg:gap-8 items-stretch">
+        {/* 3-Column Responsive Interactive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
           {SHOWCASE_PROJECTS.map((proj) => (
             <article
               key={proj.id}
@@ -156,7 +156,7 @@ export const ProjectsSection: React.FC = () => {
                   </div>
 
                   {/* Screenshot Viewport */}
-                  <div className="relative h-[95px] xs:h-[120px] sm:h-[190px] overflow-hidden bg-[#070308]">
+                  <div className="relative h-[140px] sm:h-[165px] overflow-hidden bg-[#070308]">
                     <img
                       src={proj.image}
                       alt={proj.name}
@@ -177,7 +177,7 @@ export const ProjectsSection: React.FC = () => {
               </div>
 
               {/* Card Body */}
-              <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-3.5">
+              <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-3.5">
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span className="text-[8px] sm:text-[10px] font-mono font-bold text-rose-400 uppercase tracking-wider truncate">
@@ -188,7 +188,7 @@ export const ProjectsSection: React.FC = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-xs sm:text-lg font-bold text-white group-hover:text-rose-300 transition-colors font-heading leading-tight truncate">
+                  <h3 className="text-sm sm:text-lg font-bold text-white group-hover:text-rose-300 transition-colors font-heading leading-tight">
                     {proj.name}
                   </h3>
 
@@ -216,6 +216,17 @@ export const ProjectsSection: React.FC = () => {
 
             </article>
           ))}
+        </div>
+
+        {/* Call to action to view all projects */}
+        <div className="mt-10 sm:mt-12 text-center">
+          <Link
+            to="/proyectos"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-rose-600 to-red-600 text-white font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_25px_rgba(244,63,94,0.4)] hover:scale-105 transition-all shadow-lg"
+          >
+            <span>Ver Catálogo Completo de Proyectos</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
       </div>
@@ -266,64 +277,76 @@ export const ProjectsSection: React.FC = () => {
               ))}
             </div>
 
-            {/* Problem & Solution */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-rose-950/20 border border-rose-500/20 space-y-1">
-                <span className="text-xs font-mono font-bold text-rose-400 block">🛑 El Reto Inicial:</span>
-                <p className="text-xs text-slate-300 leading-relaxed">{selectedProject.challenge}</p>
+            {/* Challenge & Solution */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                <span className="text-[10px] font-mono font-bold text-rose-400 uppercase tracking-wider block">
+                  El Desafío
+                </span>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {selectedProject.challenge}
+                </p>
               </div>
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-emerald-950/20 border border-emerald-500/20 space-y-1">
-                <span className="text-xs font-mono font-bold text-emerald-400 block">💡 La Solución Aplicada:</span>
-                <p className="text-xs text-slate-300 leading-relaxed">{selectedProject.solution}</p>
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">
+                  La Solución
+                </span>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {selectedProject.solution}
+                </p>
               </div>
             </div>
 
             {/* Highlights */}
             <div className="space-y-2">
-              <span className="text-xs font-mono font-bold text-white block">✨ Lo que destaca del proyecto:</span>
-              {selectedProject.highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
-                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>{h}</span>
-                </div>
-              ))}
+              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                Características Clave Desarrolladas
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {selectedProject.highlights.map((h, i) => (
+                  <div key={i} className="flex items-start gap-2 text-xs text-slate-200">
+                    <Check className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Tech Specs */}
-            <div>
-              <span className="text-xs font-mono font-bold text-white block mb-1.5">🛠️ Especificaciones Técnicas:</span>
+            {/* Specs Pills */}
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                Stack Técnico Empleado
+              </span>
               <div className="flex flex-wrap gap-1.5">
                 {selectedProject.specs.map((s, i) => (
-                  <span key={i} className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
+                  <span key={i} className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[10px] font-mono">
                     {s}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Modal Footer Actions */}
-            <div className="pt-3 border-t border-rose-950/80 flex flex-wrap items-center justify-between gap-3">
+            {/* Modal Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/10">
               <a
-                href={`https://wa.me/${PORTFOLIO_DATA.personalInfo.whatsappRaw}?text=${encodeURIComponent(`¡Hola Erick! Estuve leyendo el caso de estudio de ${selectedProject.name} en tu portafolio y me gustaría cotizar un sistema similar para mi negocio.`)}`}
+                href={selectedProject.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 text-white font-bold text-xs flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>Quiero algo similar</span>
+                <span>Visitar Proyecto en Vivo</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
 
-              {selectedProject.liveUrl && (
-                <a
-                  href={selectedProject.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
-                >
-                  <span>Ver Web en Producción</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              )}
+              <a
+                href={`https://wa.me/${PORTFOLIO_DATA.personalInfo.whatsappRaw}?text=Hola%20Erick,%20vi%20el%20proyecto%20de%20${encodeURIComponent(selectedProject.name)}%20en%20tu%20portafolio%20y%20quiero%20cotizar%20uno%20similar`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-600 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>Cotizar Proyecto Similar</span>
+              </a>
             </div>
 
           </div>
