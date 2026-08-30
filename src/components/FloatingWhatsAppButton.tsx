@@ -27,6 +27,60 @@ const QUICK_QUESTIONS = [
   '⚡ Cotizar un software o sistema a medida'
 ];
 
+// Helper to format text with bold (**text** or *text*), line breaks, and bullets
+const FormattedMessage: React.FC<{ text: string }> = ({ text }) => {
+  const lines = text.split('\n');
+
+  return (
+    <div className="space-y-1.5 leading-relaxed text-xs">
+      {lines.map((line, lineIdx) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          return <div key={lineIdx} className="h-1" />;
+        }
+
+        // Bullet line detection
+        const isBullet = trimmed.startsWith('•') || trimmed.startsWith('- ') || trimmed.startsWith('* ');
+        const cleanContent = isBullet 
+          ? trimmed.replace(/^[•\-*]\s*/, '') 
+          : trimmed;
+
+        // Parse bold **word** or *word*
+        const parts = cleanContent.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+
+        const renderedLine = parts.map((part, partIdx) => {
+          if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+            return (
+              <strong key={partIdx} className="font-bold text-white">
+                {part.slice(2, -2)}
+              </strong>
+            );
+          }
+          if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+            return (
+              <strong key={partIdx} className="font-bold text-white">
+                {part.slice(1, -1)}
+              </strong>
+            );
+          }
+          return <span key={partIdx}>{part}</span>;
+        });
+
+        if (isBullet) {
+          return (
+            <div key={lineIdx} className="flex items-start gap-1.5 pl-1">
+              <span className="text-rose-400 font-bold text-sm leading-none mt-0.5">•</span>
+              <div className="flex-1">{renderedLine}</div>
+            </div>
+          );
+        }
+
+        return <p key={lineIdx}>{renderedLine}</p>;
+      })}
+    </div>
+  );
+};
+
 export const FloatingWhatsAppButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState('');
@@ -39,7 +93,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
     {
       id: '1',
       sender: 'bot',
-      text: '¡Hola! 👋 Soy el Asistente Virtual de Erick con Inteligencia Artificial. Estoy conectado 24/7 para responder preguntas sobre servicios, precios o cotizar tu proyecto. ¿En qué te puedo ayudar hoy?',
+      text: '¡Hola! 👋 Soy el Asistente Virtual de Erick con IA.\n\n¿En qué te puedo asesorar hoy?\n• Precios de páginas web y tiendas\n• Sistemas médicos y software a medida\n• Ver proyectos en vivo',
       time: 'Ahora'
     }
   ]);
@@ -79,6 +133,9 @@ export const FloatingWhatsAppButton: React.FC = () => {
           } else if (userQuery.toLowerCase().includes('optica')) {
             actionUrl = 'https://optica.izerick.dev';
             actionLabel = 'Ver Plataforma Ópticas ↗';
+          } else if (userQuery.toLowerCase().includes('demostore') || userQuery.toLowerCase().includes('demoropa')) {
+            actionUrl = 'https://demoropa.izerick.dev';
+            actionLabel = 'Ver DemoStore Streetwear ↗';
           }
 
           setMessages((prev) => [
@@ -97,45 +154,24 @@ export const FloatingWhatsAppButton: React.FC = () => {
         }
       }
     } catch (err) {
-      console.log('Using local intelligent fallback...');
+      console.log('Using local fallback...');
     }
 
-    // Local smart fallback if offline
+    // Fallback if offline
     setTimeout(() => {
-      const q = userQuery.toLowerCase();
-      let reply = '';
-      let actionUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, vi tu portafolio y quiero cotizar: "${userQuery}"`)}`;
-      let actionLabel = 'Chatear con Erick por WhatsApp';
-
-      if (q.includes('precio') || q.includes('costo') || q.includes('cuanto') || q.includes('cuánto')) {
-        reply = 'Desarrollamos soluciones a medida en la nube. Los proyectos parten desde $250 para landing pages corporativas, $450 para tiendas online y $650 para sistemas complejos. ¿Qué funciones necesitas en tu proyecto?';
-        actionLabel = 'Cotizar con Erick por WhatsApp';
-      } else if (q.includes('sastreria') || q.includes('sastrería') || q.includes('lorenz') || q.includes('traje')) {
-        reply = 'Lorenz Franz es una experiencia web editorial para alta costura con preloader cinético, catálogo de telas importadas y carrusel elástico en Vercel Edge.';
-        actionUrl = 'https://sastre.izerick.dev';
-        actionLabel = 'Ver Sastrería Lorenz Franz en Vivo ↗';
-      } else if (q.includes('optica') || q.includes('médic') || q.includes('clinica') || q.includes('clínica')) {
-        reply = 'Ópticas Visual Store® es una plataforma médica en la nube con historias clínicas digitales, refracción computarizada (OD/OI) y facturación desglosada.';
-        actionUrl = 'https://optica.izerick.dev';
-        actionLabel = 'Ver Plataforma Médica Ópticas ↗';
-      } else {
-        reply = `Entiendo tu consulta sobre "${userQuery}". Para darte una propuesta personalizada y tiempos de entrega exactos, conversemos directamente por WhatsApp.`;
-        actionLabel = 'Continuar en WhatsApp con Erick';
-      }
-
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now().toString(),
           sender: 'bot',
-          text: reply,
+          text: 'Desarrollamos soluciones a medida en la nube:\n\n• Páginas Web: $250 - $400 (3 a 7 días)\n• Tiendas Online: $450 - $750 (1 a 2 semanas)\n• Sistemas a Medida: $600 - $1,200 (2 a 3 semanas)\n\n¿Deseas conversar directamente con Erick?',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          actionUrl,
-          actionLabel
+          actionUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, vi tu portafolio y quiero cotizar: "${userQuery}"`)}`,
+          actionLabel: 'Chatear con Erick por WhatsApp'
         }
       ]);
       setIsTyping(false);
-    }, 400);
+    }, 300);
   };
 
   const handleSendMessage = (textToSend?: string) => {
@@ -159,7 +195,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
       {
         id: '1',
         sender: 'bot',
-        text: '¡Hola! 👋 Soy el Asistente Virtual de Erick con Inteligencia Artificial. Estoy conectado 24/7 para responder preguntas sobre servicios, precios o cotizar tu proyecto. ¿En qué te puedo ayudar hoy?',
+        text: '¡Hola! 👋 Soy el Asistente Virtual de Erick con IA.\n\n¿En qué te puedo asesorar hoy?\n• Precios de páginas web y tiendas\n• Sistemas médicos y software a medida\n• Ver proyectos en vivo',
         time: 'Ahora'
       }
     ]);
@@ -227,13 +263,13 @@ export const FloatingWhatsAppButton: React.FC = () => {
                   className={`flex flex-col ${m.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed ${
+                    className={`max-w-[88%] p-3 rounded-2xl text-xs leading-relaxed ${
                       m.sender === 'user'
                         ? 'bg-gradient-to-r from-rose-600 to-red-600 text-white rounded-tr-none shadow-md'
                         : 'bg-white/[0.04] border border-white/10 text-slate-200 rounded-tl-none space-y-2'
                     }`}
                   >
-                    <p>{m.text}</p>
+                    <FormattedMessage text={m.text} />
 
                     {m.actionUrl && (
                       <a
