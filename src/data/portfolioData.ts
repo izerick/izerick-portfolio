@@ -78,7 +78,7 @@ export const PORTFOLIO_DATA = {
         'Sistema de cotización y agendamiento directo de citas.'
       ],
       tags: ['HTML5', 'TailwindCSS', 'GSAP Animation', 'ScrollTrigger', 'Vercel'],
-      liveUrl: 'https://sastreria.izerick.dev',
+      liveUrl: 'https://sitioweblorenzfranz.vercel.app',
       client: 'Lorenz Franz • Franklin Alcívar',
       year: '2026'
     },
