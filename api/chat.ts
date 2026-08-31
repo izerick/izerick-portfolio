@@ -8,11 +8,10 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ error: 'Message is required' });
   }
 
-  const defaultKey = Buffer.from('QVEuQWI4Uk42S2ZsUVRFeElESkdLVU1fUk9OQmZZS1pOT1g0anJDYmJhTTBzZGhtNE1aMVE=', 'base64').toString('utf-8');
-  const GEMINI_API_KEY = process.env.GEMINI_API_KEY || defaultKey;
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
   const q = message.toLowerCase().trim();
 
-  // Fast-path instant accurate responses for standard topics
+  // 1. Fast-path accurate responses for standard topics
   if (q.includes('cotiz') || q.includes('calcular') || q.includes('presupuesto') || q.includes('probar cotizador')) {
     return res.status(200).json({
       reply: "¡Excelente elección! Nuestro **Cotizador Interactivo** te permite seleccionar los módulos exactos de tu proyecto para calcular el presupuesto y tiempo de entrega al instante.\n\n• Precios transparentes y sin sorpresas\n• Desglose por módulos (Web, Tienda, Software)\n• Simulación inmediata en tiempo real"
@@ -37,7 +36,9 @@ export default async function handler(req: any, res: any) {
     });
   }
 
-  const SYSTEM_PROMPT = `Eres el Asistente Virtual Oficial de "IzErick Dev Studio", fundado por Erick Bermello (Desarrollador de Software y Cloud Engineer en Ecuador).
+  // 2. If environment variable is set on Vercel, query Gemini API
+  if (GEMINI_API_KEY) {
+    const SYSTEM_PROMPT = `Eres el Asistente Virtual Oficial de "IzErick Dev Studio", fundado por Erick Bermello (Desarrollador de Software y Cloud Engineer en Ecuador).
 
 Tu misión es atender a clientes potenciales con respuestas completas, concisas y elegantes (máximo 50 a 80 palabras con viñetas limpias).
 
@@ -52,41 +53,57 @@ Reglas:
 3. Invita al cliente a usar el Cotizador (/cotizar) o conversar por WhatsApp con Erick.
 4. Si te preguntan qué IA eres o qué tecnología usas, responde simplemente que eres el Asistente Virtual Oficial de IzErick Dev Studio desarrollado a medida (NUNCA menciones nombres de modelos como Gemini, GPT, DeepSeek, Google ni versiones).`;
 
-  const modelsToTry = ['gemini-flash-latest', 'gemini-3.1-flash-lite', 'gemini-3.6-flash'];
+    const modelsToTry = ['gemini-flash-latest', 'gemini-3.1-flash-lite', 'gemini-3.6-flash'];
 
-  for (const model of modelsToTry) {
-    try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: SYSTEM_PROMPT }]
-          },
-          contents: [
-            {
-              role: 'user',
-              parts: [{ text: message }]
+    for (const model of modelsToTry) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: {
+              parts: [{ text: SYSTEM_PROMPT }]
+            },
+            contents: [
+              {
+                role: 'user',
+                parts: [{ text: message }]
+              }
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 1024
             }
-          ],
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 1024
-          }
-        })
-      });
+          })
+        });
 
-      const data = await response.json();
-      if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
-        return res.status(200).json({ reply: data.candidates[0].content.parts[0].text.trim() });
+        const data = await response.json();
+        if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
+          return res.status(200).json({ reply: data.candidates[0].content.parts[0].text.trim() });
+        }
+      } catch (err: any) {
+        console.warn(`Model ${model} failed, trying next...`);
       }
-    } catch (err: any) {
-      console.warn(`Model ${model} failed, trying next...`);
     }
   }
 
-  // Graceful smart fallback
+  // 3. Forward to secure VPS AI Proxy if needed
+  try {
+    const vpsResponse = await fetch('http://168.138.70.4:4000/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, sessionId: 'web_session' })
+    });
+    if (vpsResponse.ok) {
+      const vpsData = await vpsResponse.json();
+      if (vpsData.reply) {
+        return res.status(200).json({ reply: vpsData.reply });
+      }
+    }
+  } catch (err) {}
+
+  // 4. Default smart fallback
   return res.status(200).json({
     reply: "En **IzErick Dev Studio** desarrollamos soluciones digitales a medida:\n\n• Páginas Web: desde $250 (3 a 7 días)\n• Tiendas Online: desde $450 (1 a 2 semanas)\n• Sistemas Cloud: desde $600 (2 a 3 semanas)\n\n💡 Puedes calcular tu presupuesto exacto en nuestro **Cotizador Interactivo** en /cotizar."
   });
