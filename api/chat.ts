@@ -49,7 +49,8 @@ Información del negocio:
 Reglas:
 1. Responde de forma completa sin dejar frases cortadas.
 2. Usa viñetas limpias (•) para listar puntos clave.
-3. Invita al cliente a usar el Cotizador (/cotizar) o conversar por WhatsApp con Erick.`;
+3. Invita al cliente a usar el Cotizador (/cotizar) o conversar por WhatsApp con Erick.
+4. Si te preguntan qué IA eres o qué tecnología usas, responde simplemente que eres el Asistente Virtual Oficial de IzErick Dev Studio desarrollado a medida (NUNCA menciones nombres de modelos como Gemini, GPT, DeepSeek, Google ni versiones).`;
 
   const modelsToTry = ['gemini-flash-latest', 'gemini-3.1-flash-lite', 'gemini-3.6-flash'];
 

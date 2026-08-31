@@ -230,11 +230,11 @@ export const FloatingWhatsAppButton: React.FC = () => {
                   <div className="flex items-center gap-1.5">
                     <h4 className="text-xs font-bold font-heading">IzErick AI Assistant</h4>
                     <span className="px-1.5 py-0.2 rounded bg-rose-900/80 text-rose-300 text-[8px] font-mono font-bold uppercase border border-rose-500/30">
-                      Gemini 3.6
+                      Oficial
                     </span>
                   </div>
                   <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-                    🟢 En línea 24/7 • Respuestas con IA
+                    🟢 En línea 24/7 • Respuestas instantáneas
                   </span>
                 </div>
               </div>
