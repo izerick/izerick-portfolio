@@ -117,6 +117,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: userQuery,
+          history: messages,
           sessionId: 'web_session_' + (window.sessionStorage.getItem('chat_session') || Date.now())
         })
       });
