@@ -167,7 +167,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
         {
           id: Date.now().toString(),
           sender: 'bot',
-          text: 'Desarrollamos soluciones a medida en la nube:\n\n• Páginas Web: $250 - $400 (3 a 7 días)\n• Tiendas Online: $450 - $750 (1 a 2 semanas)\n• Sistemas a Medida: $600 - $1,200 (2 a 3 semanas)\n\n¿Deseas conversar directamente con Erick?',
+          text: 'Desarrollamos soluciones a medida en la nube:\n\n• **Landing Pages:** Desde $35/mes o $160 anual (3 a 5 días)\n• **Tiendas Online:** $360 USD (1 a 2 semanas)\n• **Sistemas Cloud:** Desde $450 USD (2 a 3 semanas)\n\n¿Deseas conversar directamente con Erick?',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           actionUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola Erick, vi tu portafolio y quiero cotizar: "${userQuery}"`)}`,
           actionLabel: 'Chatear con Erick por WhatsApp'
