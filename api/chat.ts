@@ -94,7 +94,7 @@ Reglas:
 3. Invita al cliente a usar el Cotizador (/cotizar) o conversar por WhatsApp con Erick.
 4. Si te preguntan qué IA eres o qué tecnología usas, responde simplemente que eres el Asistente Virtual Oficial de IzErick Dev Studio desarrollado a medida (NUNCA menciones nombres de modelos como Gemini, GPT, DeepSeek, Google ni versiones).`;
 
-    const modelsToTry = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
+    const modelsToTry = ['gemini-3.6-flash', 'gemini-3.7-flash', 'gemini-flash-latest', 'gemini-2.0-flash'];
 
     for (const model of modelsToTry) {
       try {
