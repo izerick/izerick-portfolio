@@ -39,6 +39,7 @@ export const Navbar: React.FC = () => {
     { to: '/perfil', label: 'Perfil', icon: User },
     { to: '/proyectos', label: 'Proyectos', icon: Briefcase },
     { to: '/servicios', label: 'Servicios', icon: Layers },
+    { to: 'https://blog.izerick.dev', label: 'Blog', icon: Sparkles, external: true },
     { to: '/contacto', label: 'Contacto', icon: Mail },
   ];
 
@@ -87,6 +88,20 @@ export const Navbar: React.FC = () => {
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs font-medium text-slate-300">
           {navLinks.map((link) => {
+            if (link.external) {
+              return (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all py-1 px-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-1.5"
+                >
+                  <span>{link.label}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                </a>
+              );
+            }
             const isActive = location.pathname === link.to;
             return (
               <Link
@@ -113,29 +128,30 @@ export const Navbar: React.FC = () => {
           >
             <Calculator className="w-3.5 h-3.5 text-rose-200 group-hover:rotate-12 transition-transform" />
             <span>Cotizar Ahora</span>
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <Sparkles className="w-3 h-3 text-amber-300 group-hover:scale-125 transition-transform" />
           </Link>
         </div>
 
-        {/* Mobile Menu Trigger Button (Right) */}
+        {/* Mobile Hamburger Trigger */}
         <button
+          type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl bg-[#140b0f] border border-rose-900/50 text-slate-200 hover:text-white focus:outline-none transition-colors shrink-0"
-          aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          className="md:hidden p-2 rounded-lg bg-rose-950/40 border border-rose-500/30 text-rose-300 hover:text-white transition-colors"
+          aria-label="Abrir menú"
         >
-          {mobileMenuOpen ? <X className="w-5 h-5 text-rose-400" /> : <Menu className="w-5 h-5" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Drawer Dropdown with Solid Background & Clean Cards */}
+      {/* Mobile Menu Overlay & Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden bg-[#0a0508]/99 border-b border-rose-900/60 shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden border-b border-rose-950/70 bg-[#070406]/98 backdrop-blur-2xl"
           >
             <div className="px-4 pt-3 pb-6 space-y-2">
               
@@ -144,6 +160,28 @@ export const Navbar: React.FC = () => {
                 {navLinks.map((link) => {
                   const isActive = location.pathname === link.to;
                   const Icon = link.icon;
+                  if (link.external) {
+                    return (
+                      <a
+                        key={link.to}
+                        href={link.to}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-between p-3 rounded-xl transition-all bg-white/[0.02] hover:bg-white/5 border border-white/5 text-slate-300"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-1.5 rounded-lg bg-white/5 text-rose-400">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <span className="text-xs tracking-wide">{link.label}</span>
+                        </div>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-950/80 text-rose-300 border border-rose-500/30">
+                          Nuevo
+                        </span>
+                      </a>
+                    );
+                  }
                   return (
                     <Link
                       key={link.to}
