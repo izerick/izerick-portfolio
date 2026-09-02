@@ -1,6 +1,22 @@
 {
   "rewrites": [
     {
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/google:file(.*)",
+      "destination": "/google:file"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
