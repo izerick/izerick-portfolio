@@ -6,8 +6,8 @@ import { X, ArrowRight, Flame, Sparkles } from 'lucide-react';
 export const PromoToast: React.FC = () => {
   const location = useLocation();
 
-  // Only hide when the user is already on the dedicated landing-page offer
-  const isHiddenRoute = location.pathname === '/landing-page';
+  // Hide completely on cotizador and landing-page routes
+  const isHiddenRoute = location.pathname === '/cotizar' || location.pathname === '/landing-page';
 
   // Read stored preferences from sessionStorage
   const [isOpen, setIsOpen] = useState(false);
