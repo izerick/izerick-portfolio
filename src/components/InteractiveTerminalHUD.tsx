@@ -214,7 +214,7 @@ export const InteractiveTerminalHUD: React.FC = () => {
             <div className="text-rose-400 font-bold">📫 CANALES DIRECTOS:</div>
             <div>✉️ Correo: <a href="mailto:eric123joel@gmail.com" className="text-slate-100 underline">eric123joel@gmail.com</a></div>
             <div>🐙 GitHub: <a href="https://github.com/izerick" target="_blank" rel="noreferrer" className="text-slate-100 underline">github.com/izerick</a></div>
-            <div>💬 WhatsApp: <span className="text-slate-100">+593 99 502 6297</span></div>
+            <div>💬 WhatsApp: <span className="text-slate-100">+593 96 813 8903</span></div>
           </div>
         );
         break;
@@ -448,3 +448,4 @@ const MatrixBackground: React.FC<{ onMatrixClose: () => void }> = ({ onMatrixClo
     </div>
   );
 };
+
