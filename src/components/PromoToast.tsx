@@ -4,19 +4,42 @@ import { Link, useLocation } from 'react-router-dom';
 import { X, ArrowRight, Flame, Sparkles } from 'lucide-react';
 
 export const PromoToast: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
   const location = useLocation();
 
-  // Hide toast and tab completely on landing-page, cotizar, and proyectos routes
-  const isHiddenRoute = location.pathname === '/landing-page' || location.pathname === '/cotizar' || location.pathname === '/proyectos';
+  // Only hide when the user is already on the dedicated landing-page offer
+  const isHiddenRoute = location.pathname === '/landing-page';
+
+  // Read stored preferences from sessionStorage
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(() => {
+    return sessionStorage.getItem('promo_minimized') === 'true';
+  });
 
   useEffect(() => {
     if (isHiddenRoute) return;
 
-    // Show after 3 seconds
+    // Check if the user already minimized or interacted with the promo
+    const alreadyMinimized = sessionStorage.getItem('promo_minimized') === 'true';
+    const alreadySeen = sessionStorage.getItem('promo_seen') === 'true';
+
+    if (alreadyMinimized) {
+      setIsMinimized(true);
+      setIsOpen(false);
+      return;
+    }
+
+    if (alreadySeen) {
+      // If already shown previously in this session, keep it minimized to avoid disturbing the user
+      setIsMinimized(true);
+      setIsOpen(false);
+      return;
+    }
+
+    // First time arrival: Show full toast after 3 seconds
     const timer = setTimeout(() => {
       setIsOpen(true);
+      setIsMinimized(false);
+      sessionStorage.setItem('promo_seen', 'true');
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -29,18 +52,27 @@ export const PromoToast: React.FC = () => {
     e.stopPropagation();
     setIsOpen(false);
     setIsMinimized(true);
+    sessionStorage.setItem('promo_minimized', 'true');
+    sessionStorage.setItem('promo_seen', 'true');
   };
 
   const handleExpand = () => {
     setIsMinimized(false);
     setIsOpen(true);
+    sessionStorage.removeItem('promo_minimized');
+  };
+
+  const handleNavigateToOffer = () => {
+    setIsOpen(false);
+    setIsMinimized(true);
+    sessionStorage.setItem('promo_minimized', 'true');
   };
 
   return (
     <>
       {/* 1. Lateral Floating Glowing Tab (Fixed on Left Screen Edge) */}
       <AnimatePresence>
-        {isMinimized && (
+        {isMinimized && !isOpen && (
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
@@ -82,7 +114,7 @@ export const PromoToast: React.FC = () => {
 
       {/* 2. Full Floating Modal Card */}
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && !isMinimized && (
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -96,7 +128,7 @@ export const PromoToast: React.FC = () => {
             {/* Close / Minimize to Left Button */}
             <button
               onClick={handleMinimize}
-              className="absolute top-3.5 right-3.5 p-1.5 rounded-full bg-rose-950/90 hover:bg-rose-900 text-rose-300 hover:text-white border border-rose-500/40 transition-colors z-20 shadow-md"
+              className="absolute top-3.5 right-3.5 p-1.5 rounded-full bg-rose-950/90 hover:bg-rose-900 text-rose-300 hover:text-white border border-rose-500/40 transition-colors z-20 shadow-md cursor-pointer"
               title="Minimizar al lateral"
               aria-label="Cerrar y minimizar al lateral"
             >
@@ -128,7 +160,7 @@ export const PromoToast: React.FC = () => {
             {/* CTA Button to Offer Landing Page */}
             <Link
               to="/landing-page"
-              onClick={() => setIsOpen(false)}
+              onClick={handleNavigateToOffer}
               className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white text-xs font-bold font-sans flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(244,63,94,0.45)] transition-all group active:scale-98 ring-1 ring-rose-400/50"
             >
               <span>Ver Promoción Completa</span>
